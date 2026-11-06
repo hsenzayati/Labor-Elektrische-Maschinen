@@ -22,15 +22,8 @@ U_N_STR = 220.0       # V, primäre Strangspannung
 I_N_STR = 45.5        # A, Strangstrom
 S_N = 3 * U_N_STR * I_N_STR
 
-BLAU = "#1f3f6e"
-ORANGE = "#c0782c"
-GRUEN = "#3a8a85"
-GRAU = "#7a7a85"
-
 plt.rcParams.update({
-    "font.size": 10, "axes.titleweight": "bold", "axes.titlesize": 11,
-    "axes.spines.top": False, "axes.spines.right": False,
-    "axes.grid": True, "grid.linestyle": "--", "grid.alpha": 0.35,
+    "font.size": 10, "axes.grid": True, "grid.alpha": 0.4,
     "figure.dpi": 150, "savefig.bbox": "tight",
 })
 
@@ -74,34 +67,22 @@ out(f"X_h  (Strang)     = {X_H:.1f} Ohm")
 out(f"L_h  (Strang)     = {X_H/(2*np.pi*50):.3f} H")
 out(f"Faktor I0(286V)/I0(220V) = {I0[-1]/I0N:.1f}")
 
-fig, ax = plt.subplots(figsize=(7.2, 3.8))
-ax.plot(I0, U0, "o-", color=BLAU, ms=4, label="Messung")
-ax.axhline(U_N_STR, color=ORANGE, ls="--", lw=1.2,
-           label=r"$U_\mathrm{N,Str}=220\,$V")
-ax.plot([I0N], [U_N_STR], "s", color=ORANGE, ms=7)
-ax.annotate(f"$I_0\\approx{I0N:.2f}$ A".replace(".", "{,}"), (I0N, U_N_STR),
-            xytext=(I0N + 1.2, U_N_STR - 45),
-            arrowprops=dict(arrowstyle="->", color=GRAU))
-ax.set_xlabel(r"Leerlaufstrom $I_0$ (Strang) [A]")
+fig, ax = plt.subplots(figsize=(6.5, 3.8))
+ax.plot(I0, U0, "o-", ms=4)
+ax.set_xlabel(r"Leerlaufstrom $I_0$ [A]")
 ax.set_ylabel(r"Strangspannung $U_0$ [V]")
-ax.set_title("Leerlaufkennlinie $U_0 = f(I_0)$")
-ax.legend(loc="lower right")
 fig.savefig(AUS / "leerlaufkennlinie.pdf")
 plt.close(fig)
 
-fig, ax = plt.subplots(figsize=(7.2, 3.8))
-ax.plot(U0, P0, "o-", color=BLAU, ms=4, label=r"$P_0$ (Wirkleistung, ges.)")
-ax.plot(U0, Q0 / 10, "s--", color=ORANGE, ms=4,
-        label=r"$Q_0/10$ (Blindleistung, ges.)")
-uu = np.linspace(0, U0.max(), 200)
 b_fe = np.sum(P0 * U0**2) / np.sum(U0**4)
-ax.plot(uu, b_fe * uu**2, ":", color=GRAU,
-        label=r"Ausgleich $P_0 = b\,U_0^2$")
-ax.axvline(U_N_STR, color=GRAU, lw=0.8)
-ax.set_xlabel(r"Strangspannung $U_0$ [V]")
-ax.set_ylabel("Leistung [W] bzw. [var/10]")
-ax.set_title("Leerlaufverluste und Magnetisierungsblindleistung")
-ax.legend(loc="upper left")
+fig, axs = plt.subplots(1, 2, figsize=(7.6, 3.4))
+axs[0].plot(U0, P0, "o-", ms=4)
+axs[0].set_ylabel(r"Wirkleistung $P_0$ [W]")
+axs[1].plot(U0, Q0, "o-", ms=4, color="tab:red")
+axs[1].set_ylabel(r"Blindleistung $Q_0$ [var]")
+for a in axs:
+    a.set_xlabel(r"Strangspannung $U_0$ [V]")
+fig.tight_layout()
 fig.savefig(AUS / "leerlaufleistung.pdf")
 plt.close(fig)
 out(f"Regression P0 = {b_fe*1e3:.3f} mW/V^2 * U^2")
@@ -144,23 +125,16 @@ kyz = kurzschluss("KurzschlussYZ.csv", I1N_YZ)
 out(f"YZ bezogen auf 45,5 A: u_k={100*kyz['Z']*I_N_STR/U_N_STR:.2f} %")
 
 fig, axs = plt.subplots(1, 2, figsize=(7.6, 3.4))
-for k, farbe, lab in [(kyy, BLAU, "Yy"), (kyz, ORANGE, "Yz")]:
-    Uk, Ik, Pk = k["d"][:, 0], k["d"][:, 1], k["d"][:, 2]
-    ii = np.linspace(0, 47, 50)
-    axs[0].plot(Ik, Uk, "o", color=farbe, label=f"{lab} Messung")
-    axs[0].plot(ii, k["Z_U"] * ii, "--", color=farbe, lw=1,
-                label=f"{lab}: $U_k/I_k={k['Z_U']:.3f}\\,\\Omega$".replace(".", "{,}"))
-    axs[1].plot(Ik, Pk, "o", color=farbe, label=f"{lab} Messung")
-    axs[1].plot(ii, 3 * k["R"] * ii**2, "--", color=farbe, lw=1,
-                label=f"{lab}: $3R_kI^2$")
+for k, mk, lab in [(kyy, "o-", "Yy"), (kyz, "s-", "Yz")]:
+    o = np.argsort(k["d"][:, 1])
+    Uk, Ik, Pk = k["d"][o, 0], k["d"][o, 1], k["d"][o, 2]
+    axs[0].plot(Ik, Uk, mk, ms=4, label=lab)
+    axs[1].plot(Ik, Pk, mk, ms=4, label=lab)
 for a in axs:
-    a.axvline(I_N_STR, color=GRAU, lw=0.8)
     a.set_xlabel(r"Strangstrom $I_k$ [A]")
-    a.legend(fontsize=8, loc="upper left")
+    a.legend(loc="upper left")
 axs[0].set_ylabel(r"Strangspannung $U_k$ [V]")
-axs[1].set_ylabel(r"Wirkleistung $P_k$ (ges.) [W]")
-axs[0].set_title("Kurzschlussspannung")
-axs[1].set_title("Kurzschlussverluste")
+axs[1].set_ylabel(r"Wirkleistung $P_k$ [W]")
 fig.tight_layout()
 fig.savefig(AUS / "kurzschluss.pdf")
 plt.close(fig)
@@ -202,59 +176,41 @@ for p, s in zip(prim, sek):
     bel[-1]["dU_kapp"] = dU_kapp
     out(f"   Kapp: dU = {100*dU_kapp:+.2f} %")
 
-fig, axs = plt.subplots(1, 2, figsize=(7.6, 3.4))
-namen = ["ohmsch", "ohmsch-\ninduktiv", "ohmsch-\nkapazitiv"]
 x = np.arange(3)
-axs[0].bar(x - 0.18, [b["P1"] / 1e3 for b in bel], 0.36, color=BLAU, label="$P_1$ primär")
-axs[0].bar(x + 0.18, [b["P2"] / 1e3 for b in bel], 0.36, color=ORANGE, label="$P_2$ sekundär")
-for i, b in enumerate(bel):
-    axs[0].text(i, b["P1"] / 1e3 + 0.3, f"$\\eta={100*b['eta']:.1f}\\,\\%$".replace(".", "{,}"),
-                ha="center", fontsize=8)
-axs[0].set_xticks(x, namen)
-axs[0].set_ylabel("Wirkleistung [kW]")
-axs[0].set_ylim(0, 12.5)
-axs[0].set_title("Leistungsbilanz")
-axs[0].legend(fontsize=8, loc="lower left")
-axs[1].bar(x, [b["U2"] for b in bel], 0.5, color=[GRAU, BLAU, GRUEN])
-for i, b in enumerate(bel):
-    axs[1].text(i, b["U2"] + 1, f"{b['U2']:.1f} V".replace(".", ","), ha="center", fontsize=8)
-axs[1].axhline(np.mean([b["U20"] for b in bel if "ohmsche" in b["fall"]]), color=ORANGE,
-               ls="--", lw=1, label=r"$U_{20}=U_1/\ddot u$ (ohmsch)")
-axs[1].set_ylim(150, 200)
-axs[1].set_xticks(x, namen)
-axs[1].set_ylabel(r"Sekundäre Strangspannung $U_2$ [V]")
-axs[1].set_title("Sekundärspannung je Lastfall")
-axs[1].legend(fontsize=8, loc="lower right")
+namen = ["ohmsch", "ohmsch-induktiv", "ohmsch-kapazitiv"]
+fig, axs = plt.subplots(1, 2, figsize=(7.6, 3.4))
+axs[0].bar(x - 0.2, [b["P1"] / 1e3 for b in bel], 0.4, label="primär")
+axs[0].bar(x + 0.2, [b["P2"] / 1e3 for b in bel], 0.4, label="sekundär")
+axs[0].set_ylabel("Wirkleistung $P$ [kW]")
+axs[1].bar(x - 0.2, [b["U1"] for b in bel], 0.4, label="primär")
+axs[1].bar(x + 0.2, [b["U2"] for b in bel], 0.4, label="sekundär")
+axs[1].set_ylabel("Strangspannung $U$ [V]")
+for a in axs:
+    a.set_xticks(x, namen, fontsize=8)
+    a.legend(fontsize=8, loc="lower right")
 fig.tight_layout()
 fig.savefig(AUS / "belastung.pdf")
 plt.close(fig)
 
 # --------------------------------------------------------- Einschaltstrom
 out("=== Einschaltstrom (Rush) ===")
-fig, axs = plt.subplots(3, 1, figsize=(7.6, 7.2), sharex=True)
+fig, axs = plt.subplots(3, 1, figsize=(7.0, 7.0), sharex=True)
 for a, name in zip(axs, ["scope_3.csv", "scope_6.csv", "scope_7.csv"]):
     d = np.genfromtxt(DATEN / name, delimiter=",", skip_header=2)
     m = ~np.isnan(d).any(axis=1)
     t, u, i = d[m, 0] * 1e3, d[m, 1], d[m, 2]
+    a.plot(t, i, color="tab:blue", lw=0.8, label="$i_1$")
+    a.set_ylabel("Strom $i_1$ [A]")
     a2 = a.twinx()
-    a2.plot(t, u, color=GRAU, lw=0.6, alpha=0.7)
-    a2.set_ylabel("$u$ [V]", color=GRAU)
-    a2.set_ylim(-700, 400)
-    a2.spines["right"].set_visible(True)
-    a2.grid(False)
-    a.plot(t, i, color=BLAU, lw=0.8)
-    a.set_ylabel("$i$ [A]")
-    a.set_ylim(-160, 30)
+    a2.plot(t, u, color="tab:red", lw=0.8, label="$u_1$")
+    a2.set_ylabel("Spannung $u_1$ [V]")
+    a.set_title(name.replace(".csv", ""), fontsize=10)
     spitzen = []
     for p in range(10):
         s = (t >= -20.6 + 20 * p) & (t < -20.6 + 20 * (p + 1))
         if s.any():
             spitzen.append(i[s].min())
     k = np.argmin(i)
-    a.plot(t[k], i[k], "v", color=ORANGE)
-    a.annotate(f"$\\hat i = {abs(i[k]):.0f}$ A", (t[k], i[k]), xytext=(t[k] + 8, i[k] + 10),
-               color=ORANGE)
-    a.set_title(f"Messung {name.replace('.csv', '')}: Einschaltstrom", fontsize=10)
     out(f"{name}: i_max = {i[k]:.1f} A bei t = {t[k]:.2f} ms (u = {u[k]:.1f} V); "
         f"Spitzen je Periode: " + ", ".join(f"{abs(x):.0f}" for x in spitzen))
     out(f"   bezogen auf Nennstromscheitel {np.sqrt(2)*I_N_STR:.1f} A: "

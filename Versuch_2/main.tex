@@ -178,11 +178,11 @@ Bei offener Sekundärseite wurde die primäre Strangspannung in 19 Stufen von \S
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{leerlaufleistung.pdf}
-\caption{Leerlauf-Wirkleistung $P_0$ und -Blindleistung $Q_0$ über der Strangspannung}
+\caption{Leerlaufversuch: Wirkleistung $P_0$ (links) und Blindleistung $Q_0$ (rechts) über der Strangspannung}
 \label{fig:llp}
 \end{figure}
 
-Die Wirkleistung $P_0$ entspricht den Eisenverlusten (Hysterese- und Wirbelstromverluste). Sie steigt in guter Näherung quadratisch mit der Spannung (\cref{fig:llp}, Ausgleich $P_0 \approx \SI{4.8}{mW/V^2}\cdot U_0^2$). Die Blindleistung $Q_0$ steigt dagegen oberhalb der Nennspannung stark an, da der Magnetisierungsbedarf in der Sättigung explodiert. Entsprechend sinkt der Leistungsfaktor von 0,41 auf 0,06.
+Die Wirkleistung $P_0$ entspricht den Eisenverlusten (Hysterese- und Wirbelstromverluste). Sie steigt etwa quadratisch mit der Spannung (\cref{fig:llp}, links). Die Blindleistung $Q_0$ (\cref{fig:llp}, rechts) steigt dagegen oberhalb der Nennspannung stark an, da der Magnetisierungsbedarf in der Sättigung explodiert. Entsprechend sinkt der Leistungsfaktor von 0,41 auf 0,06.
 
 Durch lineare Interpolation bei $U_\mathrm{N,Str}=\SI{220}{V}$ ergeben sich die Kennwerte in \cref{tab:ll}. Die Querelemente des Ersatzschaltbilds folgen aus
 \begin{equation}
@@ -246,7 +246,7 @@ Als primärer Bemessungsstrom gilt bei Yy $I_\mathrm{1N}=\SI{45.5}{A}$ und bei Y
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{kurzschluss.pdf}
-\caption{Kurzschlussversuch: Strangspannung (links) und Wirkleistung (rechts) über dem Strangstrom; senkrechte Linie: $I_\mathrm{N}=\SI{45.5}{A}$}
+\caption{Kurzschlussversuch: Strangspannung (links) und Wirkleistung (rechts) über dem Strangstrom}
 \label{fig:ks}
 \end{figure}
 
@@ -332,7 +332,7 @@ ohmsch-kapazitiv & primär & 220,57 & 16,04 & 10,09 & 3,30 & 10,62 & 0,95\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{belastung.pdf}
-\caption{Belastungsversuch: Leistungsbilanz und Wirkungsgrad (links), sekundäre Strangspannung (rechts) mit der Leerlaufspannung $U_{20}=U_1/\ue$ bei ohmscher Last}
+\caption{Belastungsversuch: Wirkleistung (links) und Strangspannung (rechts) auf Primär- und Sekundärseite}
 \label{fig:bel}
 \end{figure}
 
@@ -379,7 +379,7 @@ Der leerlaufende Transformator wurde dreimal direkt ans Netz ($U_\mathrm{Str}\ap
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{rush.pdf}
-\caption{Einschaltstrom $i_1(t)$ (blau) und Strangspannung $u_1(t)$ (grau) für drei Einschaltvorgänge}
+\caption{Einschaltstrom $i_1(t)$ (blau, linke Achse) und Strangspannung $u_1(t)$ (rot, rechte Achse) für drei Einschaltvorgänge}
 \label{fig:rush}
 \end{figure}
 
