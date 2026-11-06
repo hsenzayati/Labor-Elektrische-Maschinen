@@ -1,0 +1,12 @@
+
+Primärseite
+Ustr;Istr;Pges;Qges;Sges;cos phi;Lastfall
+221,60E+0; 15,87E+0; 10,40E+3;  1,81E+3; 10,58E+3;990,00E-3;ohmsche Last
+203,60E+0; 24,26E+0;  8,50E+3; 12,14E+3; 14,82E+3;580,00E-3;ohmsch-induktive Last
+220,57E+0; 16,04E+0; 10,09E+3;  3,30E+3; 10,62E+3;950,00E-3;ohmsch-kapazitive Last
+
+Sekundärseite
+Ustr;Istr;Pges;Qges;Sges;cos phi;Lastfall
+187,97E+0; 17,86E+0; 10,07E+3;  0,00E+0; 10,08E+3;  1,00E+0;ohmsche Last
+168,63E+0; 26,52E+0;  7,93E+3; 10,83E+3; 13,42E+3;590,00E-3;ohmsch-induktive Last
+188,87E+0; 19,09E+0;  9,69E+3;  4,83E+3; 10,82E+3;900,00E-3;ohmsch-kapazitive Last

@@ -1,0 +1,258 @@
+% Erklärung zum Versuch 2 (Drehstromtransformator) auf Deutsch, Französisch und Arabisch
+% Kompilieren mit:  xelatex Erklaerung_Versuch2.tex  (zweimal)
+\documentclass[a4paper,11pt]{article}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setotherlanguages{french,arabic}
+\setmainfont{Latin Modern Roman}
+\newfontfamily\arabicfont[Script=Arabic,Scale=1.15]{Amiri}
+\newfontfamily\arabicfontsf[Script=Arabic]{Noto Sans Arabic}
+\newfontfamily\arabicfonttt[Script=Arabic]{Noto Sans Arabic}
+\providecommand{\textLR}[1]{\LR{#1}}
+
+\definecolor{dunkelblau}{RGB}{20,50,110}
+\titleformat{\section}{\Large\bfseries\color{dunkelblau}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\color{dunkelblau}}{\thesubsection}{0.6em}{}
+\graphicspath{{../Versuch_2/abbildungen/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\newcommand{\ue}{\ddot{u}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{dunkelblau} Versuch 2 -- Drehstromtransformator}\\[0.4em]
+{\large Erklärung: Was wurde gemacht und warum?}\\[0.2em]
+{\large\textfrench{Explication : qu'avons-nous fait et pourquoi ?}}\\[0.2em]
+{\large\textarabic{شرح: ماذا فعلنا ولماذا؟}}\\[0.8em]
+Labor Elektrische Maschinen, Ostfalia -- Gruppe DoB 5 -- Messung vom 05.11.2026
+\end{center}
+
+\tableofcontents
+\newpage
+
+%=====================================================================
+\section{Deutsch}
+%=====================================================================
+
+\subsection{Worum geht es?}
+Ein Transformator setzt eine Wechselspannung in eine andere um. Er besteht aus einem Eisenkern und Wicklungen. Ideal wäre er verlustfrei. Real hat er
+\begin{itemize}[nosep]
+  \item \textbf{Eisenverluste} (Ummagnetisierung, Wirbelströme) -- hängen von der \emph{Spannung} ab,
+  \item \textbf{Kupferverluste} (Wicklungswiderstand) -- hängen vom \emph{Strom} ab,
+  \item einen \textbf{Magnetisierungsstrom} und eine \textbf{Streuung} (nicht der ganze Fluss erreicht die andere Wicklung).
+\end{itemize}
+Diese Effekte werden im \textbf{Ersatzschaltbild} durch vier Elemente beschrieben: $R_\mathrm{Fe}$ und $X_\mathrm{h}$ (Querzweig) sowie $R_\mathrm{k}$ und $X_\mathrm{k}$ (Längszweig). Ziel des Versuchs ist es, diese Elemente zu messen und damit das Verhalten unter Last vorherzusagen.
+
+\subsection{Aufbau des Berichts}
+\begin{enumerate}[nosep]
+  \item \textbf{Einleitung} -- Ziel und Gliederung.
+  \item \textbf{Vorbereitende Aufgaben} -- Parallelschaltung, Schaltgruppen, Ströme/Spannungen der Schaltungen, Rush-Effekt (Theorie).
+  \item \textbf{Versuchsaufbau} -- Nenndaten (\SI{220}{V}, \SI{45,5}{A}, \SI{30}{kVA}), Messaufbau, Ersatzschaltbild.
+  \item \textbf{Durchführung und Auswertung} -- vier Messungen (siehe unten).
+  \item \textbf{Fazit} -- Ergebnistabelle, Schlussfolgerungen, Fehlerbetrachtung.
+\end{enumerate}
+Alle Zahlen und Diagramme erzeugt das Skript \texttt{auswertung.py} aus den CSV-Dateien.
+
+\subsection{Messung 1: Leerlaufversuch}
+\textbf{Was?} Sekundärseite offen, Primärspannung schrittweise von \SI{56}{V} bis \SI{286}{V} erhöht.\\
+\textbf{Warum?} Ohne Last fließt nur der kleine Magnetisierungsstrom; die Kupferverluste sind praktisch null. Die gemessene Wirkleistung ist also \emph{nur} Eisenverlust, die Blindleistung \emph{nur} Magnetisierung. So bekommt man $R_\mathrm{Fe}=U^2/(P_0/3)$ und $X_\mathrm{h}=U^2/(Q_0/3)$.\\
+\textbf{Ergebnis:} $I_0=\SI{2,17}{A}$ (nur \SI{4,8}{\%} von $I_\mathrm{N}$), $P_\mathrm{Fe}=\SI{196}{W}$, $R_\mathrm{Fe}=\SI{741}{\ohm}$, $X_\mathrm{h}=\SI{100,5}{\ohm}$. Oberhalb von \SI{220}{V} gerät das Eisen in die \textbf{Sättigung}: Bei \SI{130}{\%} Spannung steigt der Strom auf das 4,4-fache.
+
+\subsection{Messung 2: Kurzschlussversuch}
+\textbf{Was?} Sekundärseite kurzgeschlossen, Spannung langsam erhöht, bis etwa Nennstrom fließt. In zwei Schaltungen: Yy und Yz (Zickzack).\\
+\textbf{Warum?} Nur ca.\ \SI{15}{V} (statt \SI{220}{V}) reichen für den Nennstrom. Bei so kleiner Spannung ist der Fluss klein und die Eisenverluste sind vernachlässigbar. Die gemessene Leistung ist also \emph{nur} Kupferverlust. So bekommt man $R_\mathrm{k}$, $X_\mathrm{k}$ und die \textbf{Kurzschlussspannung} $u_\mathrm{k}$.\\
+\textbf{Ergebnis:} $u_\mathrm{k}\approx\SI{7,5}{\%}$, Kupferverluste bei Nennstrom \SI{1,5}{kW} (Yy). Zickzack hat etwa \SI{19}{\%} höheren Widerstand, weil sich die Teilspannungen geometrisch (unter \SI{120}{\degree}) addieren und mehr Kupfer nötig ist. Vorher wurde die Übersetzung gemessen: Yy 1,000; Yz 1,175 (Theorie $2/\sqrt3=1{,}155$).
+
+\subsection{Messung 3: Belastungsversuch}
+\textbf{Was?} Transformator (Yz) mit ohmscher, ohmsch-induktiver und ohmsch-kapazitiver Last betrieben, Primär- und Sekundärseite gleichzeitig gemessen.\\
+\textbf{Warum?} Um zu prüfen, ob das Ersatzschaltbild aus Messung 1 und 2 das reale Verhalten richtig vorhersagt: Wirkungsgrad, Spannungsfall, Blindleistung.\\
+\textbf{Ergebnis:} $\eta = \SI{96,8}{\%}$ (ohmsch), \SI{93,3}{\%} (induktiv), \SI{96,0}{\%} (kapazitiv). Der Spannungsfall ist bei induktiver Last am größten (\SI{4,4}{\%}) und bei kapazitiver Last am kleinsten (\SI{1,1}{\%}). Die Formel von Kapp mit $R_\mathrm{k}$ und $X_\mathrm{k}$ sagt dies sehr gut voraus. Damit ist das Ersatzschaltbild bestätigt.
+
+\subsection{Messung 4: Einschaltstrom (Rush-Effekt)}
+\textbf{Was?} Leerlaufender Transformator dreimal direkt ans Netz geschaltet, Strom mit dem Oszilloskop aufgezeichnet.\\
+\textbf{Warum?} Beim Einschalten kann der Fluss nicht springen. Je nach Schaltzeitpunkt und Restmagnetismus (Remanenz) entsteht ein Gleichanteil im Fluss, der den Kern in die Sättigung treibt. Dann fließt ein sehr großer Strom, obwohl der Transformator unbelastet ist.\\
+\textbf{Ergebnis:} Spitzen von \SI{58}{A}, \SI{132}{A} und \SI{149}{A} (bis \SI{2,3}{}-facher Nennstromscheitel, ca.\ 50-facher Leerlaufstrom). Der Strom ist einseitig, hat seine Spitzen im Spannungsnulldurchgang (dort ist der Fluss maximal) und klingt über mehrere Perioden ab. Die starke Streuung zeigt, dass Schaltzeitpunkt und Remanenz zufällig sind.
+
+\subsection{Die wichtigsten Lehren}
+\begin{itemize}[nosep]
+  \item Zwei einfache Messungen (Leerlauf + Kurzschluss) reichen, um den Transformator vollständig zu beschreiben.
+  \item Eisenverluste sind konstant (Spannung), Kupferverluste wachsen mit $I^2$ (Last). Der beste Wirkungsgrad liegt dort, wo beide gleich groß sind (hier bei ca.\ \SI{36}{\%} Last).
+  \item Induktive Lasten sind am ungünstigsten (größter Strom, größter Spannungsfall).
+  \item Schutzeinrichtungen müssen den Einschaltstrom aushalten, ohne fälschlich auszulösen.
+\end{itemize}
+
+%=====================================================================
+\newpage
+\begin{french}
+\section{Français}
+
+\subsection{De quoi s'agit-il ?}
+Un transformateur convertit une tension alternative en une autre tension. Il se compose d'un noyau de fer et de bobinages. Un transformateur idéal n'aurait aucune perte. Le transformateur réel présente
+\begin{itemize}[nosep]
+  \item des \textbf{pertes fer} (hystérésis, courants de Foucault) -- elles dépendent de la \emph{tension},
+  \item des \textbf{pertes cuivre} (résistance des enroulements) -- elles dépendent du \emph{courant},
+  \item un \textbf{courant magnétisant} et des \textbf{fuites magnétiques} (une partie du flux n'atteint pas l'autre enroulement).
+\end{itemize}
+Ces effets sont décrits dans le \textbf{schéma équivalent} par quatre éléments : $R_\mathrm{Fe}$ et $X_\mathrm{h}$ (branche transversale) ainsi que $R_\mathrm{k}$ et $X_\mathrm{k}$ (branche longitudinale). Le but de l'essai est de mesurer ces éléments, puis de prédire le comportement en charge.
+
+\subsection{Structure du rapport}
+\begin{enumerate}[nosep]
+  \item \textbf{Introduction} -- objectif et plan.
+  \item \textbf{Exercices préparatoires} -- couplage en parallèle, groupes de couplage (indice horaire), courants/tensions des différents montages, effet d'enclenchement (« Rush »).
+  \item \textbf{Montage} -- caractéristiques nominales (220~V, 45,5~A, 30~kVA), schéma de mesure, schéma équivalent.
+  \item \textbf{Réalisation et exploitation} -- quatre mesures (voir ci-dessous).
+  \item \textbf{Conclusion} -- tableau des résultats, conclusions, analyse des erreurs.
+\end{enumerate}
+Tous les chiffres et graphiques sont générés à partir des fichiers CSV par le script \texttt{auswertung.py}.
+
+\subsection{Mesure 1 : essai à vide (Leerlaufversuch)}
+\textbf{Quoi ?} Secondaire ouvert, tension primaire augmentée par paliers de 56~V à 286~V.\\
+\textbf{Pourquoi ?} Sans charge, seul le faible courant magnétisant circule ; les pertes cuivre sont pratiquement nulles. La puissance active mesurée correspond donc \emph{uniquement} aux pertes fer, la puissance réactive \emph{uniquement} à la magnétisation. On obtient ainsi $R_\mathrm{Fe}=U^2/(P_0/3)$ et $X_\mathrm{h}=U^2/(Q_0/3)$.\\
+\textbf{Résultat :} $I_0=2{,}17$~A (seulement 4,8~\% de $I_\mathrm{N}$), $P_\mathrm{Fe}=196$~W, $R_\mathrm{Fe}=741~\Omega$, $X_\mathrm{h}=100{,}5~\Omega$. Au-delà de 220~V, le fer entre en \textbf{saturation} : à 130~\% de la tension, le courant est multiplié par 4,4.
+
+\subsection{Mesure 2 : essai en court-circuit (Kurzschlussversuch)}
+\textbf{Quoi ?} Secondaire court-circuité, tension augmentée lentement jusqu'à environ le courant nominal. Deux couplages : Yy et Yz (zigzag).\\
+\textbf{Pourquoi ?} Environ 15~V (au lieu de 220~V) suffisent pour le courant nominal. À une tension aussi faible, le flux est faible et les pertes fer sont négligeables. La puissance mesurée correspond donc \emph{uniquement} aux pertes cuivre. On obtient $R_\mathrm{k}$, $X_\mathrm{k}$ et la \textbf{tension de court-circuit} $u_\mathrm{k}$.\\
+\textbf{Résultat :} $u_\mathrm{k}\approx7{,}5$~\%, pertes cuivre au courant nominal 1,5~kW (Yy). Le zigzag a une résistance environ 19~\% plus élevée : les tensions partielles s'additionnent géométriquement (déphasées de 120°), il faut donc plus de cuivre. Le rapport de transformation a été mesuré auparavant : Yy 1,000 ; Yz 1,175 (théorie $2/\sqrt3=1{,}155$).
+
+\subsection{Mesure 3 : essai en charge (Belastungsversuch)}
+\textbf{Quoi ?} Transformateur (Yz) alimentant une charge résistive, résistive-inductive puis résistive-capacitive ; mesure simultanée au primaire et au secondaire.\\
+\textbf{Pourquoi ?} Pour vérifier si le schéma équivalent issu des mesures 1 et 2 prédit correctement le comportement réel : rendement, chute de tension, puissance réactive.\\
+\textbf{Résultat :} $\eta = 96{,}8$~\% (résistive), 93,3~\% (inductive), 96,0~\% (capacitive). La chute de tension est maximale avec la charge inductive (4,4~\%) et minimale avec la charge capacitive (1,1~\%). La formule de Kapp avec $R_\mathrm{k}$ et $X_\mathrm{k}$ le prédit très bien. Le schéma équivalent est donc confirmé.
+
+\subsection{Mesure 4 : courant d'enclenchement (effet « Rush »)}
+\textbf{Quoi ?} Transformateur à vide enclenché trois fois directement sur le réseau ; courant enregistré à l'oscilloscope.\\
+\textbf{Pourquoi ?} À l'enclenchement, le flux ne peut pas varier brusquement. Selon l'instant de fermeture et le magnétisme rémanent (rémanence), une composante continue apparaît dans le flux et pousse le noyau en saturation. Un courant très élevé circule alors, bien que le transformateur soit à vide.\\
+\textbf{Résultat :} pics de 58~A, 132~A et 149~A (jusqu'à 2,3 fois la crête du courant nominal, environ 50 fois le courant à vide). Le courant est unidirectionnel, ses pics se situent au passage par zéro de la tension (là où le flux est maximal) et il s'amortit sur plusieurs périodes. La forte dispersion montre que l'instant d'enclenchement et la rémanence sont aléatoires.
+
+\subsection{Les enseignements principaux}
+\begin{itemize}[nosep]
+  \item Deux mesures simples (à vide + court-circuit) suffisent pour décrire complètement le transformateur.
+  \item Les pertes fer sont constantes (tension), les pertes cuivre croissent avec $I^2$ (charge). Le rendement maximal est atteint lorsque les deux sont égales (ici vers 36~\% de charge).
+  \item Les charges inductives sont les plus défavorables (courant le plus élevé, chute de tension la plus forte).
+  \item Les protections doivent supporter le courant d'enclenchement sans déclencher à tort.
+\end{itemize}
+\end{french}
+
+%=====================================================================
+\newpage
+\begin{Arabic}
+\section{العربية}
+
+\subsection{ما موضوع التجربة؟}
+المحوّل الكهربائي (\textgerman{Transformator}) يحوّل جهدًا متناوبًا إلى جهد متناوب آخر. يتكوّن من قلب حديدي وملفّات. المحوّل المثالي لا يملك أي خسائر، أمّا المحوّل الحقيقي فله:
+\begin{itemize}[nosep]
+  \item \textbf{خسائر الحديد} (\textgerman{Eisenverluste}): بسبب التمغنط المتكرّر والتيارات الدوّامية، وهي تتعلّق \textbf{بالجهد}.
+  \item \textbf{خسائر النحاس} (\textgerman{Kupferverluste}): بسبب مقاومة الملفّات، وهي تتعلّق \textbf{بالتيار}.
+  \item \textbf{تيار المغنطة} و\textbf{التسرّب المغناطيسي}: جزء من الفيض لا يصل إلى الملفّ الآخر.
+\end{itemize}
+توصف هذه الظواهر في \textbf{الدارة المكافئة} (\textgerman{Ersatzschaltbild}) بأربعة عناصر: $R_\mathrm{Fe}$ و $X_\mathrm{h}$ (الفرع العرضي) و $R_\mathrm{k}$ و $X_\mathrm{k}$ (الفرع الطولي). هدف التجربة هو قياس هذه العناصر ثمّ التنبّؤ بسلوك المحوّل تحت الحمل.
+
+\subsection{بنية التقرير}
+\begin{enumerate}[nosep]
+  \item \textbf{المقدّمة} (\textgerman{Einleitung}): الهدف وتقسيم العمل.
+  \item \textbf{المهام التحضيرية}: التوصيل على التوازي، مجموعات التوصيل، التيارات والجهود في الدارات المختلفة، ظاهرة تيار الإقلاع (\textgerman{Rush}).
+  \item \textbf{تركيب التجربة}: القيم الاسمية \textLR{(220\,V, 45{,}5\,A, 30\,kVA)}، مخطّط القياس، الدارة المكافئة.
+  \item \textbf{التنفيذ والتحليل}: أربعة قياسات (انظر أدناه).
+  \item \textbf{الخلاصة} (\textgerman{Fazit}): جدول النتائج، الاستنتاجات، تحليل الأخطاء.
+\end{enumerate}
+كلّ الأرقام والرسوم البيانية يُنتجها البرنامج \textgerman{\texttt{auswertung.py}} انطلاقًا من ملفّات \textLR{CSV}.
+
+\subsection{القياس ١: تجربة اللاحمل (\textgerman{Leerlaufversuch})}
+\textbf{ماذا فعلنا؟} تركنا الجهة الثانوية مفتوحة، ورفعنا الجهد الابتدائي تدريجيًّا من \textLR{56\,V} إلى \textLR{286\,V}.
+
+\textbf{لماذا؟} بدون حمل يمرّ فقط تيار المغنطة الصغير، وتكون خسائر النحاس شبه معدومة. إذن القدرة الفعّالة المقيسة هي \textbf{خسائر الحديد فقط}، والقدرة الردّية هي \textbf{المغنطة فقط}. ومنها نحسب
+\textLR{$R_\mathrm{Fe}=U^2/(P_0/3)$} و \textLR{$X_\mathrm{h}=U^2/(Q_0/3)$}.
+
+\textbf{النتيجة:} \textLR{$I_0=2{,}17$\,A} (فقط \textLR{4{,}8\,\%} من التيار الاسمي)، خسائر الحديد \textLR{196\,W}، \textLR{$R_\mathrm{Fe}=741\,\Omega$}، \textLR{$X_\mathrm{h}=100{,}5\,\Omega$}. فوق \textLR{220\,V} يدخل الحديد في \textbf{الإشباع} (\textgerman{Sättigung}): عند \textLR{130\,\%} من الجهد يتضاعف التيار \textLR{4{,}4} مرّة.
+
+\subsection{القياس ٢: تجربة القصر (\textgerman{Kurzschlussversuch})}
+\textbf{ماذا فعلنا؟} قصرنا الجهة الثانوية، ورفعنا الجهد ببطء حتى وصل التيار تقريبًا إلى قيمته الاسمية. أجرينا ذلك في توصيلتين: \textLR{Yy} و \textLR{Yz} (زِكزاك).
+
+\textbf{لماذا؟} يكفي حوالي \textLR{15\,V} فقط (بدل \textLR{220\,V}) لتمرير التيار الاسمي. عند هذا الجهد الصغير يكون الفيض ضعيفًا وخسائر الحديد مهملة، فتكون القدرة المقيسة \textbf{خسائر النحاس فقط}. ومنها نحصل على $R_\mathrm{k}$ و $X_\mathrm{k}$ و\textbf{جهد القصر النسبي} $u_\mathrm{k}$.
+
+\textbf{النتيجة:} \textLR{$u_\mathrm{k}\approx7{,}5\,\%$}، وخسائر النحاس عند التيار الاسمي حوالي \textLR{1{,}5\,kW} (\textLR{Yy}). توصيلة الزِكزاك لها مقاومة أكبر بحوالي \textLR{19\,\%}، لأنّ الجهود الجزئية تُجمع هندسيًّا (بزاوية \textLR{120°}) فنحتاج إلى نحاس أكثر. قبل ذلك قسنا نسبة التحويل: \textLR{Yy: 1{,}000} و \textLR{Yz: 1{,}175} (النظرية: \textLR{$2/\sqrt3=1{,}155$}).
+
+\subsection{القياس ٣: تجربة التحميل (\textgerman{Belastungsversuch})}
+\textbf{ماذا فعلنا؟} شغّلنا المحوّل (توصيلة \textLR{Yz}) مع حمل أومي، ثمّ أومي-حثّي، ثمّ أومي-سعوي، وقسنا الجهتين الابتدائية والثانوية في نفس الوقت.
+
+\textbf{لماذا؟} لنتحقّق هل الدارة المكافئة المستخرجة من القياسين ١ و٢ تتنبّأ بشكل صحيح بالسلوك الحقيقي: المردود، هبوط الجهد، والقدرة الردّية.
+
+\textbf{النتيجة:} المردود \textLR{$\eta$}: \textLR{96{,}8\,\%} (أومي)، \textLR{93{,}3\,\%} (حثّي)، \textLR{96{,}0\,\%} (سعوي). هبوط الجهد أكبر ما يكون مع الحمل الحثّي (\textLR{4{,}4\,\%}) وأصغر ما يكون مع الحمل السعوي (\textLR{1{,}1\,\%}). معادلة \textgerman{Kapp} باستعمال $R_\mathrm{k}$ و $X_\mathrm{k}$ تتنبّأ بذلك بدقّة كبيرة، وهذا يؤكّد صحّة الدارة المكافئة.
+
+\subsection{القياس ٤: تيار الإقلاع (\textgerman{Rush-Effekt})}
+\textbf{ماذا فعلنا؟} وصلنا المحوّل وهو بدون حمل مباشرةً بالشبكة ثلاث مرّات، وسجّلنا التيار بجهاز راسم الإشارات (\textgerman{Oszilloskop}).
+
+\textbf{لماذا؟} عند الإقلاع لا يمكن للفيض المغناطيسي أن يقفز فجأة. حسب لحظة التوصيل والمغناطيسية المتبقّية (\textgerman{Remanenz}) تظهر مركّبة مستمرّة في الفيض تدفع القلب إلى الإشباع، فيمرّ تيار كبير جدًّا رغم أنّ المحوّل بدون حمل.
+
+\textbf{النتيجة:} قمم تيار بقيمة \textLR{58\,A} و \textLR{132\,A} و \textLR{149\,A}، أي حتى \textLR{2{,}3} مرّة قمّة التيار الاسمي، وحوالي \textLR{50} مرّة تيار اللاحمل. التيار في اتّجاه واحد فقط، وقممه عند مرور الجهد بالصفر (حيث يكون الفيض أعظميًّا)، ثمّ يتخامد على عدّة دورات. الاختلاف الكبير بين القياسات الثلاثة يبيّن أنّ لحظة التوصيل والمغناطيسية المتبقّية عشوائيتان.
+
+\subsection{أهمّ الدروس}
+\begin{itemize}[nosep]
+  \item قياسان بسيطان (اللاحمل + القصر) يكفيان لوصف المحوّل وصفًا كاملًا.
+  \item خسائر الحديد ثابتة (مرتبطة بالجهد)، وخسائر النحاس تزداد مع مربّع التيار (مرتبطة بالحمل). أفضل مردود يكون عندما تتساويان (هنا عند حوالي \textLR{36\,\%} من الحمل).
+  \item الأحمال الحثّية هي الأسوأ: أكبر تيار وأكبر هبوط في الجهد.
+  \item يجب أن تتحمّل أجهزة الحماية تيار الإقلاع دون أن تفصل خطأً.
+\end{itemize}
+\end{Arabic}
+
+%=====================================================================
+\newpage
+\section*{Glossar / Glossaire / \textarabic{مسرد المصطلحات}}
+\addcontentsline{toc}{section}{Glossar / Glossaire / Mustalahat}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Deutsch} & \textbf{Français} & \textbf{\textarabic{العربية}}\\
+\midrule
+Transformator & transformateur & \textarabic{محوّل}\\
+Primär- / Sekundärseite & primaire / secondaire & \textarabic{الجهة الابتدائية / الثانوية}\\
+Leerlaufversuch & essai à vide & \textarabic{تجربة اللاحمل}\\
+Kurzschlussversuch & essai en court-circuit & \textarabic{تجربة القصر}\\
+Belastungsversuch & essai en charge & \textarabic{تجربة التحميل}\\
+Eisenverluste & pertes fer & \textarabic{خسائر الحديد}\\
+Kupferverluste & pertes cuivre (Joule) & \textarabic{خسائر النحاس}\\
+Magnetisierungsstrom & courant magnétisant & \textarabic{تيار المغنطة}\\
+Sättigung & saturation & \textarabic{الإشباع}\\
+Remanenz & rémanence & \textarabic{المغناطيسية المتبقّية}\\
+Streuung & fuites magnétiques & \textarabic{التسرّب المغناطيسي}\\
+Ersatzschaltbild & schéma équivalent & \textarabic{الدارة المكافئة}\\
+Übersetzungsverhältnis $\ue$ & rapport de transformation & \textarabic{نسبة التحويل}\\
+Kurzschlussspannung $u_\mathrm{k}$ & tension de court-circuit & \textarabic{جهد القصر}\\
+Schaltgruppe & groupe de couplage & \textarabic{مجموعة التوصيل}\\
+Stern / Dreieck / Zickzack & étoile / triangle / zigzag & \textarabic{نجمة / مثلث / زِكزاك}\\
+Wirkungsgrad $\eta$ & rendement & \textarabic{المردود}\\
+Spannungsfall & chute de tension & \textarabic{هبوط الجهد}\\
+Wirk- / Blind- / Scheinleistung & puissance active / réactive / apparente & \textarabic{القدرة الفعّالة / الردّية / الظاهرية}\\
+Einschaltstrom (Rush) & courant d'enclenchement & \textarabic{تيار الإقلاع}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Wichtige Formeln / Formules clés / \textarabic{أهمّ المعادلات}}
+\begin{align*}
+R_\mathrm{Fe} &= \frac{U_\mathrm{Str}^2}{P_0/3}, & X_\mathrm{h} &= \frac{U_\mathrm{Str}^2}{Q_0/3}
+&& \text{(Leerlauf / à vide / \textarabic{اللاحمل})}\\
+R_\mathrm{k} &= \frac{P_\mathrm{k}}{3I_\mathrm{k}^2}, & X_\mathrm{k} &= \frac{Q_\mathrm{k}}{3I_\mathrm{k}^2}
+&& \text{(Kurzschluss / court-circuit / \textarabic{القصر})}\\
+u_\mathrm{k} &= \frac{Z_\mathrm{k}I_\mathrm{N}}{U_\mathrm{N}}, & \eta &= \frac{P_2}{P_1}
+&& \\
+\Delta u &\approx \frac{I\,(R_\mathrm{k}\cos\varphi + X_\mathrm{k}\sin\varphi)}{U}
+&& && \text{(Kapp)}
+\end{align*}
+
+\end{document}

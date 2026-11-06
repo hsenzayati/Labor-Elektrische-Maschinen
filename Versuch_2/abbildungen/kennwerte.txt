@@ -1,0 +1,45 @@
+=== Leerlauf ===
+I0 bei U_N        = 2.17 A  (4.77 % von I_N)
+P0 bei U_N        = 196 W  (0.65 % von S_N)
+Q0 bei U_N        = 1445 var
+cos phi0 bei U_N  = 0.134
+R_Fe (Strang)     = 741 Ohm
+X_h  (Strang)     = 100.5 Ohm
+L_h  (Strang)     = 0.320 H
+Faktor I0(286V)/I0(220V) = 4.4
+Regression P0 = 4.806 mW/V^2 * U^2
+=== Kurzschluss KurzschlussYY.csv ===
+Übersetzung U1/U2 = 18.5/18.5 = 1.000
+  U=  6.33 I= 17.41 P=    230  Zk=0.3636 Rk=0.2529 Xk=0.2749
+  U= 11.07 I= 31.45 P=    750  Zk=0.3520 Rk=0.2528 Xk=0.2730
+  U= 14.93 I= 42.80 P=   1310  Zk=0.3488 Rk=0.2384 Xk=0.2639
+  U= 14.00 I= 40.96 P=   1230  Zk=0.3418 Rk=0.2444 Xk=0.2841
+Z_k aus U/I (Ausgleich) = 0.3480 Ohm, aus S/(3I^2): 0.3629, 0.3774, 0.3548, 0.3815
+Z_k=0.3655 R_k=0.2428 X_k=0.2731 Ohm, cos phi_k=0.664
+Bezugsstrom 45.50 A: U_k=16.63 V, u_k=7.56 %, u_R=5.02 %, u_X=5.65 %, P_kN=1508 W
+=== Kurzschluss KurzschlussYZ.csv ===
+Übersetzung U1/U2 = 14.8/12.6 = 1.175
+  U=  6.83 I= 17.45 P=    260  Zk=0.3914 Rk=0.2846 Xk=0.2737
+  U=  8.73 I= 23.50 P=    490  Zk=0.3715 Rk=0.2958 Xk=0.2897
+  U= 12.83 I= 34.54 P=   1030  Zk=0.3715 Rk=0.2878 Xk=0.2990
+Z_k aus U/I (Ausgleich) = 0.3744 Ohm, aus S/(3I^2): 0.3941, 0.4587, 0.4247
+Z_k=0.4138 R_k=0.2890 X_k=0.2961 Ohm, cos phi_k=0.698
+Bezugsstrom 39.40 A: U_k=16.30 V, u_k=7.41 %, u_R=5.18 %, u_X=5.30 %, P_kN=1346 W
+YZ bezogen auf 45,5 A: u_k=8.56 %
+=== Belastung (Schaltung Yz) ===
+ohmsche Last             eta=96.8 %  P_V=330 W  U1/U2=1.179 I2/I1=1.125  U20=191.9 V  dU=+2.05 %  (mit ü=1,175: +0.37 %)
+   erwartet: P0=199 W + PCu=218 W = 418 W
+   Kapp: dU = +2.07 %
+ohmsch-induktive Last    eta=93.3 %  P_V=570 W  U1/U2=1.207 I2/I1=1.093  U20=176.3 V  dU=+4.36 %  (mit ü=1,175: +2.71 %)
+   erwartet: P0=156 W + PCu=510 W = 666 W
+   Kapp: dU = +4.88 %
+ohmsch-kapazitive Last   eta=96.0 %  P_V=400 W  U1/U2=1.168 I2/I1=1.190  U20=191.0 V  dU=+1.13 %  (mit ü=1,175: -0.58 %)
+   erwartet: P0=197 W + PCu=223 W = 420 W
+   Kapp: dU = +0.95 %
+=== Einschaltstrom (Rush) ===
+scope_3.csv: i_max = -58.0 A bei t = 1.60 ms (u = 22.4 V); Spitzen je Periode: 21, 58, 38, 28, 23, 18, 16, 14, 13, 12
+   bezogen auf Nennstromscheitel 64.3 A: 0.90-fach, auf Leerlaufstromscheitel 3.07 A: 19-fach
+scope_6.csv: i_max = -132.3 A bei t = 3.35 ms (u = 26.4 V); Spitzen je Periode: 16, 132, 63, 41, 30, 24, 20, 17, 16, 14
+   bezogen auf Nennstromscheitel 64.3 A: 2.06-fach, auf Leerlaufstromscheitel 3.07 A: 43-fach
+scope_7.csv: i_max = -149.4 A bei t = 3.72 ms (u = 28.4 V); Spitzen je Periode: 16, 149, 68, 44, 32, 25, 21, 18, 16, 14
+   bezogen auf Nennstromscheitel 64.3 A: 2.32-fach, auf Leerlaufstromscheitel 3.07 A: 49-fach
