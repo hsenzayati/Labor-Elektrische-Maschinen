@@ -18,3 +18,8 @@ pdflatex main && bibtex main && pdflatex main && pdflatex main
 cd ../Erklaerung
 xelatex Erklaerung_Versuch2 && xelatex Erklaerung_Versuch2   # benötigt Schrift "Amiri"
 ```
+
+## Overleaf
+
+- `Overleaf_Bericht_Versuch2.zip` → *New Project → Upload Project*, Compiler: **pdfLaTeX**, Hauptdatei `main.tex`.
+- `Overleaf_Erklaerung_Versuch2.zip` → eigenes Projekt; die enthaltene `latexmkrc` stellt automatisch **XeLaTeX** ein (Schrift Amiri ist in Overleaf vorhanden).

@@ -1,0 +1,2 @@
+# Overleaf/latexmk: dieses Dokument mit XeLaTeX übersetzen (Arabisch)
+$pdf_mode = 5;
