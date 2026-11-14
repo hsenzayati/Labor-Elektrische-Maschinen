@@ -92,7 +92,7 @@ Der Versuch gliedert sich in folgende Teile:
 Geben Sie einige Schaltgruppenkombinationen an, die parallelgeschaltet werden können. Was ist bei der Parallelschaltung von Transformatoren darüber hinaus zu beachten?
 \end{aufgabe}
 
-\textbf{Schaltgruppenkombinationen.} Zwei Transformatoren dürfen parallelgeschaltet werden, wenn sie dieselbe Kennzahl (Uhrzeigerzahl, $\varphi = \text{Kennzahl}\cdot\SI{30}{\degree}$) besitzen, da sonst zwischen den Sekundärseiten eine Spannungsdifferenz auftritt und ein Ausgleichsstrom fließt. Nach Abbildung~1.1 ergeben sich folgende Gruppen:
+\textbf{Schaltgruppenkombinationen.} Zwei Transformatoren dürfen parallelgeschaltet werden, wenn sie dieselbe Kennzahl (Uhrzeigerzahl, $\varphi = \text{Kennzahl}\cdot\SI{30}{\degree}$) besitzen, da sonst zwischen den Sekundärseiten eine Spannungsdifferenz auftritt und ein Ausgleichsstrom fließt. Nach Abbildung~1.1 der Versuchsanleitung ergeben sich folgende Gruppen:
 
 \begin{center}
 \begin{tabular}{@{}cl@{}}
@@ -132,7 +132,7 @@ Darüber hinaus lassen sich Transformatoren \emph{verschiedener} Kennzahl durch 
 Bestimmen Sie für die Schaltungen in Abbildung~2.1 die maximal möglichen Ströme und Nennspannungen auf der Primär- und der Sekundärseite sowie die Trafo-Scheinleistung. Nehmen Sie hierfür die Daten des Trafos aus dem Laborversuch.
 \end{aufgabe}
 
-\textbf{Nenndaten des Prüflings (Tabelle~2):}
+\textbf{Nenndaten des Prüflings (Tabelle~2 der Versuchsanleitung):}
 \begin{center}
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -150,13 +150,13 @@ Die Primärseite ist in allen Schaltungen in Stern geschaltet. Jeder Sekundärst
   \text{Parallelschaltung: } \SI{110}{V},\ \SI{91}{A}
 \end{equation*}
 
-\begin{hinweis}[Zuordnung der Schaltungen in Abbildung 2.1 der Versuchsanleitung]
-Die vier Schaltungen werden im Folgenden so bezeichnet:\\
-\textbf{(a)}~oben links: Sekundär Stern, beide Halbstränge je Strang in \emph{Reihe}.\quad
-\textbf{(b)}~oben rechts: Sekundär Stern, beide Halbstränge je Strang \emph{parallel}.\\
-\textbf{(c)}~unten links: Sekundär Stern, nur \emph{ein} Halbstrang je Strang.\quad
-\textbf{(d)}~unten rechts: Sekundär \emph{Zickzack} aus Halbsträngen verschiedener Schenkel.
-\end{hinweis}
+Die vier Schaltungen aus Abbildung~2.1 der Versuchsanleitung werden im Folgenden mit (a) bis (d) bezeichnet:
+\begin{itemize}[nosep]
+  \item[(a)] oben links: Sekundärseite in Stern, beide Halbstränge je Strang in Reihe,
+  \item[(b)] oben rechts: Sekundärseite in Stern, beide Halbstränge je Strang parallel,
+  \item[(c)] unten links: Sekundärseite in Stern, nur ein Halbstrang je Strang,
+  \item[(d)] unten rechts: Sekundärseite in Zickzack aus Halbsträngen verschiedener Schenkel.
+\end{itemize}
 
 \paragraph{Rechenweg}
 
@@ -438,7 +438,7 @@ Für die Auswertung wird das einphasige T-Ersatzschaltbild je Strang verwendet (
 %==================================================
 \chapter{Durchführung und Auswertung}
 
-Alle Messgrößen sind Strangwerte der Primärseite (Spannung, Strom); Leistungen sind Summen über alle drei Stränge. Die Diagramme zeigen die Messwerte direkt aus den CSV-Dateien der Messung; die Kennwerte wurden mit dem Python-Skript \texttt{auswertung.py} berechnet.
+Wenn nicht anders angegeben, sind Spannungen und Ströme Strangwerte der Primärseite. Die Leistungen sind jeweils die Summe über alle drei Stränge.
 
 %--------------------------------------------------
 \section{Leerlaufversuch}
@@ -474,7 +474,7 @@ Bei offener Sekundärseite wurde die primäre Strangspannung in 19 Stufen von \S
 \label{fig:llp}
 \end{figure}
 
-Die Wirkleistung $P_0$ entspricht den Eisenverlusten (Hysterese- und Wirbelstromverluste). Sie steigt etwa quadratisch mit der Spannung (\cref{fig:llp}, links). Die Blindleistung $Q_0$ (\cref{fig:llp}, rechts) steigt dagegen oberhalb der Nennspannung stark an, da der Magnetisierungsbedarf in der Sättigung explodiert. Entsprechend sinkt der Leistungsfaktor von 0,41 auf 0,06.
+Die Wirkleistung $P_0$ entspricht den Eisenverlusten (Hysterese- und Wirbelstromverluste). Sie steigt etwa quadratisch mit der Spannung (\cref{fig:llp}, links). Die Blindleistung $Q_0$ (\cref{fig:llp}, rechts) steigt dagegen oberhalb der Nennspannung stark an, da der Kern in die Sättigung geht und deutlich mehr Magnetisierungsstrom benötigt. Entsprechend sinkt der Leistungsfaktor von 0,41 auf 0,06.
 
 Durch lineare Interpolation bei $U_\mathrm{N,Str}=\SI{220}{V}$ ergeben sich die Kennwerte in \cref{tab:ll}. Die Querelemente des Ersatzschaltbilds folgen aus
 \begin{equation}
@@ -529,7 +529,7 @@ Da die Spannung im Kurzschlussversuch klein ist (\SIrange{6}{15}{V} statt \SI{22
   X_\mathrm{k} = \frac{Q_\mathrm{k}}{3 I_\mathrm{k}^2}, \qquad
   Z_\mathrm{k} = \sqrt{R_\mathrm{k}^2 + X_\mathrm{k}^2}.
 \end{equation}
-Für jede Schaltung wurde über alle Messpunkte ein Ausgleich (Methode der kleinsten Quadrate) gebildet. Die Kurzschlussspannung bei Bemessungsstrom ist
+Die Werte für $R_\mathrm{k}$ und $X_\mathrm{k}$ wurden für jede Schaltung durch eine Ausgleichsrechnung über alle Messpunkte bestimmt. Die Kurzschlussspannung bei Bemessungsstrom ist
 \begin{equation}
   u_\mathrm{k} = \frac{Z_\mathrm{k}\, I_\mathrm{1N}}{U_\mathrm{N,Str}}, \qquad u_\mathrm{R} = \frac{R_\mathrm{k}\, I_\mathrm{1N}}{U_\mathrm{N,Str}}, \qquad u_\mathrm{X} = \frac{X_\mathrm{k}\, I_\mathrm{1N}}{U_\mathrm{N,Str}}.
 \end{equation}
@@ -575,7 +575,7 @@ Yz & 12,83 & 34,54 & 1030 & 1070 & 0,288 & 0,299\\
 
 \begin{table}[H]
 \centering
-\caption{Ergebnisse des Kurzschlussversuchs (Ausgleich über alle Messpunkte)}
+\caption{Ergebnisse des Kurzschlussversuchs}
 \label{tab:ks2}
 \begin{tabular}{@{}lcc@{}}
 \toprule
@@ -596,9 +596,7 @@ Die Spannung und die Verluste folgen den erwarteten Gesetzmäßigkeiten $U_\math
 
 Die Zickzackschaltung hat größere Längswiderstände als Yy: $R_\mathrm{k}$ ist etwa \SI{19}{\percent} größer. Der Grund ist, dass sich die Halbstrangspannungen bei Zickzack geometrisch addieren. Für dieselbe Sekundärspannung ist also mehr Wicklungskupfer nötig, das vom vollen Strom durchflossen wird. Auch die Streureaktanz steigt, weil die beiden Halbstränge einer Phase auf verschiedenen Schenkeln liegen und schlechter magnetisch gekoppelt sind.
 
-\begin{hinweis}[Hinweis zur Auswertung]
-Bei Yz ist $3\,U_\mathrm{k}I_\mathrm{k}$ etwa \SI{13}{\percent} kleiner als die vom Messgerät angezeigte Scheinleistung $S_\mathrm{k}$. Die drei Stränge sind bei der Zickzackschaltung also nicht exakt symmetrisch belastet, und der angezeigte Mittelwert der Strangspannung beschreibt den Transformator nur ungenau. Die Auswertung nutzt deshalb die über alle drei Stränge summierten Leistungen $P_\mathrm{k}$ und $Q_\mathrm{k}$. Aus $U_\mathrm{k}/I_\mathrm{k}$ allein ergäbe sich $Z_\mathrm{k}\approx\SI{0.35}{\ohm}$ (Yy) bzw.\ \SI{0.37}{\ohm} (Yz) und damit $u_\mathrm{k}\approx\SI{7.2}{\percent}$ bzw.\ \SI{6.7}{\percent}.
-\end{hinweis}
+Bei der Yz-Messung fällt auf, dass $3\,U_\mathrm{k}I_\mathrm{k}$ etwa \SI{13}{\percent} kleiner ist als die angezeigte Scheinleistung $S_\mathrm{k}$. Die drei Stränge waren bei der Zickzackschaltung also nicht ganz symmetrisch belastet. Deshalb wurden $R_\mathrm{k}$ und $X_\mathrm{k}$ aus den Leistungen $P_\mathrm{k}$ und $Q_\mathrm{k}$ berechnet, die alle drei Stränge erfassen. Rechnet man nur mit $U_\mathrm{k}/I_\mathrm{k}$, ergibt sich $Z_\mathrm{k}\approx\SI{0.35}{\ohm}$ (Yy) bzw.\ \SI{0.37}{\ohm} (Yz) und damit $u_\mathrm{k}\approx\SI{7.2}{\percent}$ bzw.\ \SI{6.7}{\percent}.
 
 %--------------------------------------------------
 \section{Belastungsversuch}
@@ -666,10 +664,9 @@ $U_{20} = U_1/\ue$ ($\ue = 2/\sqrt3$) & \SI{191.9}{V} & \SI{176.3}{V} & \SI{191.
 Spannungsänderung $\Delta u$ gemessen & \SI{2.1}{\percent} & \SI{4.4}{\percent} & \SI{1.1}{\percent}\\
 $\Delta u$ nach Kapp & \SI{2.1}{\percent} & \SI{4.9}{\percent} & \SI{1.0}{\percent}\\
 \midrule
-Blindleistung Trafo $Q_1 - Q_2$ & \SI{1.81}{kvar} & \SI{1.31}{kvar} & \SI{1.53}{kvar}$^{*}$\\
+Blindleistung Trafo $Q_1 - Q_2$ & \SI{1.81}{kvar} & \SI{1.31}{kvar} & \SI{1.53}{kvar}\\
 \bottomrule
-\end{tabular}\\[0.3em]
-{\footnotesize $^{*}$ Primär- und Sekundärseite sind hier kapazitiv; daher $Q_\mathrm{T} = |Q_2| - |Q_1|$.}
+\end{tabular}
 \end{table}
 
 Der Wirkungsgrad liegt zwischen \SI{93}{\percent} und \SI{97}{\percent}. Bei induktiver Last ist er am kleinsten: Für etwa dieselbe Wirkleistung fließt wegen $\cos\varphi = 0{,}59$ ein um rund \SI{50}{\percent} größerer Strom, und die Kupferverluste steigen quadratisch. Die gemessenen Verluste liegen jeweils um \SIrange{90}{100}{W} unter dem aus Leerlauf- und Kurzschlussversuch erwarteten Wert. Das ist plausibel, weil $P_1-P_2$ die Differenz zweier großer Zahlen ist: Schon \SI{0.5}{\percent} Messfehler auf jeder Seite ergeben etwa \SI{100}{W}.
@@ -681,9 +678,9 @@ Der Wirkungsgrad liegt zwischen \SI{93}{\percent} und \SI{97}{\percent}. Bei ind
 \end{equation}
 ($\sin\varphi_2 < 0$ bei kapazitiver Last) wurde mit der Bemessungsübersetzung $\ue=2/\sqrt3$ berechnet. Gemessene und nach Kapp berechnete Werte stimmen sehr gut überein (\cref{tab:bel2}). Wird stattdessen die bei kleiner Spannung gemessene Übersetzung $1{,}175$ verwendet, ergibt sich \SI{0.4}{\percent}, \SI{2.7}{\percent} bzw.\ \SI{-0.6}{\percent}. Die Bemessungsübersetzung ist also die bessere Bezugsgröße; der Wert 1,175 ist durch die Ableseauflösung verfälscht.
 
-Die induktive Last verursacht den größten Spannungsfall, weil $X_\mathrm{k}\sin\varphi_2$ und $R_\mathrm{k}\cos\varphi_2$ sich addieren. Bei kapazitiver Last wirkt $X_\mathrm{k}\sin\varphi_2$ dem ohmschen Anteil entgegen, und der Spannungsfall ist am kleinsten. Bei stärker kapazitiver Last kann die Sekundärspannung sogar über die Leerlaufspannung steigen (Ferranti-ähnlicher Effekt). Zusätzlich brach bei induktiver Last die Netzspannung von \SI{221}{V} auf \SI{204}{V} ein, weil der hohe Blindstrom auch an der Netz- und Stelltrafoimpedanz Spannung abfallen lässt.
+Die induktive Last verursacht den größten Spannungsfall, weil $X_\mathrm{k}\sin\varphi_2$ und $R_\mathrm{k}\cos\varphi_2$ sich addieren. Bei kapazitiver Last wirkt $X_\mathrm{k}\sin\varphi_2$ dem ohmschen Anteil entgegen, und der Spannungsfall ist am kleinsten. Bei stärker kapazitiver Last kann die Sekundärspannung sogar über die Leerlaufspannung steigen. Zusätzlich brach bei induktiver Last die Netzspannung von \SI{221}{V} auf \SI{204}{V} ein, weil der hohe Blindstrom auch an der Netz- und Stelltrafoimpedanz Spannung abfallen lässt.
 
-\paragraph{Blindleistungsbedarf.} Der Transformator selbst nimmt induktive Blindleistung auf: im Querzweig $Q_0 \approx \SI{1.45}{kvar}$ und im Längszweig $3X_\mathrm{k}I^2 \approx \SIrange{0.2}{0.5}{kvar}$. Die Differenzen $Q_1-Q_2$ von \SIrange{1.3}{1.8}{kvar} bestätigen das. Bei kapazitiver Last kompensiert der Transformator einen Teil der kapazitiven Blindleistung, daher ist $|Q_1| < |Q_2|$. Auch das Stromverhältnis $I_2/I_1 = 1{,}09$ bis $1{,}19$ weicht vom idealen $\ue=1{,}155$ ab, weil sich der Magnetisierungsstrom zum umgerechneten Laststrom geometrisch addiert.
+\paragraph{Blindleistungsbedarf.} Der Transformator selbst nimmt induktive Blindleistung auf: im Querzweig $Q_0 \approx \SI{1.45}{kvar}$ und im Längszweig $3X_\mathrm{k}I^2 \approx \SIrange{0.2}{0.5}{kvar}$. Die Differenzen $Q_1-Q_2$ von \SIrange{1.3}{1.8}{kvar} bestätigen das. Bei kapazitiver Last kompensiert der Transformator einen Teil der kapazitiven Blindleistung, daher ist $|Q_1| < |Q_2|$ und die Blindleistung des Transformators ergibt sich hier aus $|Q_2| - |Q_1|$. Auch das Stromverhältnis $I_2/I_1 = 1{,}09$ bis $1{,}19$ weicht vom idealen $\ue=1{,}155$ ab, weil sich der Magnetisierungsstrom zum umgerechneten Laststrom geometrisch addiert.
 
 %--------------------------------------------------
 \section{Einschaltstrom (Rush-Effekt)}
@@ -698,7 +695,7 @@ Der leerlaufende Transformator wurde dreimal direkt ans Netz ($U_\mathrm{Str}\ap
 {\small (b) Messung 2}\\[0.6em]
 \includegraphics[width=0.75\textwidth]{scope_8.png}\\[0.2em]
 {\small (c) Messung 3}
-\caption{Oszilloskopbilder der drei Einschaltvorgänge (gelb: Strangspannung $u_1$, \SI{100}{V/div}; grün: Strom $i_1$, \SI{50}{A/div}; \SI{20}{ms/div}). Der Wert \glqq Ampl(2)\grqq{} ist der Spitze-Spitze-Wert des Stroms.}
+\caption{Oszilloskopbilder der drei Einschaltvorgänge (gelb: Strangspannung $u_1$, \SI{100}{V/div}; grün: Strom $i_1$, \SI{50}{A/div}; \SI{20}{ms/div}).}
 \label{fig:rush}
 \end{figure}
 
@@ -717,7 +714,7 @@ Messung 3 / A & 149 & 68 & 44 & 32 & 25 & 21 & 18 & 16 & 14\\
 \end{tabular}
 \end{table}
 
-Die Werte wurden aus den CSV-Dateien des Oszilloskops ausgelesen. Sie sind etwas kleiner als die angezeigten \glqq Ampl\grqq-Werte in \cref{fig:rush}, da diese den Spitze-Spitze-Wert angeben.
+In \cref{tab:rush} sind die Spitzenwerte des Stroms in jeder Periode eingetragen. Das Oszilloskop zeigt unter \glqq Ampl(2)\grqq{} den Spitze-Spitze-Wert an, deshalb sind die Werte in \cref{fig:rush} etwas größer.
 
 Die Messungen zeigen alle Merkmale des Rush-Effekts aus \cref{sec:a4}:
 \begin{itemize}[nosep]
@@ -762,7 +759,7 @@ max.\ Einschaltstrom (Scheitel) & \SI{58}{A} bis \SI{149}{A} ($\le 2{,}3\cdot\ha
 
 \begin{enumerate}
   \item \textbf{Leerlauf:} Der Transformator arbeitet bei Nennspannung im Knie der Magnetisierungskennlinie. Das nutzt das Eisen gut aus, macht ihn aber empfindlich gegen Überspannung: Bei \SI{130}{\percent} Spannung steigt der Leerlaufstrom auf das 4,4-fache. Die Eisenverluste sind mit \SI{0.65}{\percent} der Bemessungsleistung klein und fallen unabhängig von der Last ständig an.
-  \item \textbf{Kurzschluss:} Mit $u_\mathrm{k}\approx\SI{7.5}{\percent}$ liegt der Transformator im typischen Bereich für Verteiltransformatoren dieser Größe. Ein satter Kurzschluss an Nennspannung würde den $1/u_\mathrm{k}\approx 13$-fachen Nennstrom treiben. Die Kupferverluste bei Nennstrom sind fast achtmal größer als die Eisenverluste.
+  \item \textbf{Kurzschluss:} Mit $u_\mathrm{k}\approx\SI{7.5}{\percent}$ liegt der Transformator im typischen Bereich für Verteiltransformatoren dieser Größe. Ein Kurzschluss bei Nennspannung würde den $1/u_\mathrm{k}\approx 13$-fachen Nennstrom treiben. Die Kupferverluste bei Nennstrom sind fast achtmal größer als die Eisenverluste.
   \item \textbf{Schaltungsvergleich:} Die Zickzackschaltung hat höhere Längswiderstände und nutzt die Wicklung nur zu \SI{86.6}{\percent} aus. Sie wird trotzdem eingesetzt, weil sie unsymmetrische Lasten (Sternpunktbelastung) gut verträgt.
   \item \textbf{Belastung:} Wirkungsgrad und Spannungshaltung hängen stark vom Leistungsfaktor ab. Induktive Lasten verursachen den größten Spannungsfall und die größten Verluste; kapazitive Lasten heben die Spannung an. Das Ersatzschaltbild aus Leerlauf- und Kurzschlussversuch sagt den Spannungsfall (Kapp) sehr genau voraus.
   \item \textbf{Wirkungsgradmaximum:} Das Maximum liegt dort, wo die Kupferverluste gleich den Eisenverlusten sind, also bei $I/I_\mathrm{N}=\sqrt{P_\mathrm{Fe}/P_\mathrm{kN}}\approx\sqrt{196/1508}\approx 0{,}36$. Die ohmsche Messung lag mit etwa einem Drittel der Bemessungsleistung nahe an diesem Punkt.
