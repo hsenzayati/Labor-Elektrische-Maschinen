@@ -1,6 +1,6 @@
 \documentclass[a4paper,11pt]{scrreprt}
 %==================================================
-% Pakete
+% Pakete -- eigenständige Datei (keine weiteren Dateien nötig)
 %==================================================
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -16,13 +16,16 @@
 \usepackage{xcolor}
 \usepackage[most]{tcolorbox}
 \usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
 \usetikzlibrary{positioning,arrows.meta,calc}
 \usepackage{siunitx}
 \usepackage{caption}
 \usepackage[hidelinks]{hyperref}
 \usepackage[ngerman]{cleveref} % zuletzt laden
 
-\graphicspath{{abbildungen/}{Messdaten_05_11_26/}{Versuchsbilder/}}
+
 
 % ---------- Farben und Boxen ----------
 \definecolor{dunkelblau}{RGB}{20,50,110}
@@ -50,9 +53,962 @@
   inter-unit-product = \ensuremath{{}\cdot{}}
 }
 \renewcommand{\arraystretch}{1.3}
-\bibliographystyle{unsrt}
+
 
 %==================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Messdaten Einschaltstrom (Oszilloskop, reduziert)
+%% scope_3.csv (reduziert)
+\pgfplotstableread{
+t i u
+-20.31 -1.7 193
+-19.67 -1.7 150
+-19.03 -1.7 90
+-18.39 -1.7 21
+-17.75 -1.7 -44
+-17.11 -1.7 -103
+-16.47 -1.7 -155
+-15.83 -1.7 -205
+-15.19 -1.7 -244
+-14.55 -1.7 -281
+-13.91 -1.7 -304
+-13.27 -1.7 -317
+-12.63 -1.7 -316
+-11.99 -1.7 -292
+-11.35 -1.7 -261
+-10.71 -1.7 -227
+-10.07 -1.7 -188
+-9.43 -1.7 -139
+-8.79 -1.7 -75
+-8.15 -1.7 -7
+-7.51 -1.7 58
+-6.87 -1.7 114
+-6.23 -1.7 162
+-5.59 -1.7 211
+-4.95 -1.7 246
+-4.31 -1.7 279
+-3.67 -1.7 299
+-3.03 -3.7 307
+-2.39 -5.7 291
+-1.75 -11.7 252
+-1.11 -23.3 198
+-0.47 -37.9 149
+0.17 -49.9 107
+0.81 -57.5 58
+1.45 -58.0 9
+2.09 -56.0 -35
+2.73 -49.9 -79
+3.37 -37.9 -122
+4.01 -25.3 -168
+4.65 -13.2 -217
+5.29 -7.2 -264
+5.93 -3.2 -296
+6.57 -1.7 -316
+7.21 -1.7 -316
+7.85 -1.7 -300
+8.49 -1.7 -268
+9.13 -1.2 -236
+9.77 -1.2 -199
+10.41 -1.2 -152
+11.05 -1.2 -91
+11.69 -1.2 -23
+12.33 -1.2 41
+12.97 -1.2 102
+13.61 -1.7 150
+14.25 -1.7 202
+14.89 -1.7 238
+15.53 -3.2 275
+16.17 -1.7 298
+16.81 -3.2 308
+17.45 -3.7 299
+18.09 -5.7 271
+18.73 -9.2 233
+19.37 -15.8 186
+20.01 -27.3 134
+20.65 -35.4 82
+21.29 -37.9 29
+21.93 -37.9 -19
+22.57 -33.9 -67
+23.21 -25.8 -115
+23.85 -17.3 -164
+24.49 -7.7 -220
+25.13 -5.2 -260
+25.77 -3.2 -289
+26.41 -1.7 -312
+27.05 -1.7 -320
+27.69 -1.7 -307
+28.33 -1.7 -276
+28.97 -1.7 -244
+29.61 -1.2 -208
+30.25 -1.2 -164
+30.89 0.3 -107
+31.53 0.3 -39
+32.17 -0.7 26
+32.81 -1.2 86
+33.45 -1.7 142
+34.09 -1.7 189
+34.73 -1.7 233
+35.37 -1.7 267
+36.01 -1.7 291
+36.65 -3.2 307
+37.29 -3.7 306
+37.93 -3.7 282
+38.57 -5.7 246
+39.21 -9.7 209
+39.85 -15.8 158
+40.49 -23.3 106
+41.13 -27.8 49
+41.77 -27.8 -8
+42.41 -25.8 -58
+43.05 -19.8 -107
+43.69 -13.2 -156
+44.33 -7.7 -212
+44.97 -3.7 -251
+45.61 -3.2 -284
+46.25 -3.2 -308
+46.89 -1.7 -317
+47.53 -1.7 -312
+48.17 -1.7 -281
+48.81 -1.2 -252
+49.45 0.3 -216
+50.09 -1.2 -176
+50.73 0.3 -122
+51.37 0.3 -55
+52.01 0.3 10
+52.65 -1.2 73
+53.29 -1.2 127
+53.93 -1.7 178
+54.57 -1.7 222
+55.21 -1.7 256
+55.85 -1.7 288
+56.49 -1.7 307
+57.13 -1.7 307
+57.77 -3.2 290
+58.41 -5.2 256
+59.05 -7.2 219
+59.69 -11.7 181
+60.33 -17.3 126
+60.97 -19.8 69
+61.61 -21.8 9
+62.25 -23.3 -47
+62.89 -17.8 -94
+63.53 -11.2 -147
+64.17 -7.7 -200
+64.81 -3.7 -244
+65.45 -3.2 -280
+66.09 -1.7 -305
+66.73 -1.7 -321
+67.37 -1.7 -316
+68.01 -1.7 -292
+68.65 -1.2 -257
+69.29 -1.2 -227
+69.93 -1.2 -184
+70.57 0.3 -135
+71.21 0.3 -71
+71.85 0.3 -3
+72.49 0.3 55
+73.13 0.3 114
+73.77 -1.7 166
+74.41 -1.7 210
+75.05 -1.7 249
+75.69 -1.7 280
+76.33 -1.7 303
+76.97 -1.7 311
+77.61 -2.7 298
+78.25 -3.7 267
+78.89 -5.7 230
+79.53 -7.7 190
+80.17 -11.7 142
+80.81 -15.8 85
+81.45 -17.8 21
+82.09 -17.8 -32
+82.73 -15.8 -83
+83.37 -11.2 -138
+84.01 -7.7 -192
+84.65 -5.2 -236
+85.29 -3.2 -272
+85.93 -1.7 -299
+86.57 -1.7 -317
+87.21 -1.7 -316
+87.85 -1.7 -299
+88.49 -1.7 -265
+89.13 -1.2 -232
+89.77 -1.2 -195
+90.41 0.3 -146
+91.05 0.3 -87
+91.69 0.3 -22
+92.33 0.3 42
+92.97 -1.2 102
+93.61 -1.2 154
+94.25 -1.7 199
+94.89 -1.7 238
+95.53 -1.7 274
+96.17 -3.2 296
+96.81 -2.7 307
+97.45 -3.2 303
+98.09 -3.7 275
+98.73 -3.7 239
+99.37 -5.7 201
+100.01 -9.7 158
+100.65 -13.8 105
+101.29 -15.8 41
+101.93 -15.8 -19
+102.57 -13.8 -71
+103.21 -11.2 -127
+103.85 -7.7 -180
+104.49 -5.2 -224
+105.13 -3.2 -261
+105.77 -1.7 -293
+106.41 -1.2 -316
+107.05 -1.7 -320
+107.69 -1.7 -304
+108.33 -1.2 -273
+108.97 -1.2 -240
+109.61 -0.7 -204
+110.25 0.3 -164
+110.89 0.3 -103
+111.53 0.8 -35
+112.17 0.3 29
+112.81 0.3 90
+113.45 -1.2 142
+114.09 -1.7 190
+114.73 -1.7 230
+115.37 -1.7 267
+116.01 -1.7 292
+116.65 -1.7 311
+117.29 -3.2 307
+117.93 -3.2 283
+118.57 -3.7 250
+119.21 -5.7 214
+119.85 -7.7 170
+120.49 -11.7 118
+121.13 -13.8 58
+121.77 -13.8 -4
+122.41 -13.2 -59
+123.05 -9.7 -115
+123.69 -7.2 -168
+124.33 -5.2 -213
+124.97 -3.2 -253
+125.61 -1.7 -288
+126.25 -1.7 -312
+126.89 -1.2 -320
+127.53 -1.2 -308
+128.17 -1.2 -283
+128.81 -1.2 -248
+129.45 0.3 -213
+130.09 0.3 -172
+130.73 0.3 -118
+131.37 0.8 -51
+132.01 0.8 10
+132.65 0.3 74
+133.29 0.3 130
+133.93 -1.2 178
+134.57 -1.2 222
+135.21 -1.7 259
+135.85 -1.7 287
+136.49 -1.7 307
+137.13 -1.7 307
+137.77 -3.2 291
+138.41 -3.7 259
+139.05 -5.2 222
+139.69 -6.7 182
+140.33 -9.2 134
+140.97 -11.7 74
+141.61 -13.2 9
+142.25 -11.7 -47
+142.89 -9.7 -103
+143.53 -7.7 -156
+144.17 -5.2 -207
+144.81 -3.2 -244
+145.45 -1.7 -280
+146.09 -1.7 -304
+146.73 -1.7 -320
+147.37 -1.7 -315
+148.01 -1.2 -291
+148.65 -1.2 -256
+149.29 0.3 -224
+149.93 -1.2 -181
+150.57 0.3 -131
+151.21 0.8 -67
+151.85 0.8 -3
+152.49 0.3 58
+153.13 -0.7 118
+153.77 -1.2 166
+154.41 -1.7 214
+155.05 -1.7 252
+155.69 -1.7 282
+156.33 -1.7 304
+156.97 -1.7 311
+157.61 -1.7 298
+158.25 -3.2 267
+158.89 -3.7 230
+159.53 -5.7 191
+160.17 -7.7 150
+160.81 -9.7 90
+161.45 -11.7 25
+162.09 -11.2 -32
+162.73 -9.7 -88
+163.37 -7.2 -143
+164.01 -5.7 -193
+164.65 -3.7 -236
+165.29 -1.7 -273
+165.93 -1.7 -300
+166.57 -1.7 -316
+167.21 -1.2 -319
+167.85 -1.7 -296
+168.49 -1.2 -264
+169.13 0.3 -232
+169.77 0.3 -193
+170.41 0.3 -143
+171.05 0.8 -80
+171.69 2.3 -18
+172.33 0.3 46
+172.97 0.3 102
+173.61 -1.2 154
+174.25 -1.7 202
+174.89 -1.7 239
+175.53 -1.7 275
+176.17 -1.7 299
+176.81 -1.7 311
+177.45 -2.7 302
+178.09 -3.2 278
+178.73 -3.7 238
+}\rushA
+
+%% scope_6.csv (reduziert)
+\pgfplotstableread{
+t i u
+-20.60 -1.7 307
+-19.96 -1.7 287
+-19.32 -1.7 258
+-18.68 -1.7 222
+-18.04 -1.7 189
+-17.40 -1.7 135
+-16.76 -1.7 73
+-16.12 -1.7 8
+-15.48 -1.7 -59
+-14.84 -1.7 -118
+-14.20 -1.7 -172
+-13.56 -1.7 -215
+-12.92 -1.7 -252
+-12.28 -1.7 -289
+-11.64 -1.7 -312
+-11.00 -1.7 -320
+-10.36 -1.7 -316
+-9.72 -1.7 -284
+-9.08 -1.7 -253
+-8.44 -1.7 -220
+-7.80 -1.7 -180
+-7.16 -1.7 -126
+-6.52 -1.7 -59
+-5.88 -1.7 6
+-5.24 -1.7 70
+-4.60 -1.7 127
+-3.96 -1.7 174
+-3.32 -1.7 218
+-2.68 -3.7 255
+-2.04 -5.7 279
+-1.40 -11.7 287
+-0.76 -29.8 250
+-0.12 -54.0 202
+0.52 -78.6 157
+1.16 -102.2 103
+1.80 -121.8 67
+2.44 -130.3 45
+3.08 -132.3 25
+3.72 -128.3 -3
+4.36 -116.3 -28
+5.00 -96.2 -71
+5.64 -73.5 -119
+6.28 -51.9 -161
+6.92 -29.8 -205
+7.56 -13.8 -256
+8.20 -5.7 -299
+8.84 -3.2 -316
+9.48 -1.7 -315
+10.12 -1.7 -292
+10.76 -1.7 -260
+11.40 -1.7 -228
+12.04 -1.2 -189
+12.68 -1.2 -139
+13.32 -1.2 -76
+13.96 -1.7 -7
+14.60 -1.7 55
+15.24 -1.7 114
+15.88 -1.7 163
+16.52 -1.7 210
+17.16 -1.7 246
+17.80 -2.7 279
+18.44 -3.2 300
+19.08 -4.7 307
+19.72 -5.7 292
+20.36 -13.8 254
+21.00 -25.8 194
+21.64 -41.4 146
+22.28 -54.0 102
+22.92 -62.0 55
+23.56 -63.0 9
+24.20 -61.5 -34
+24.84 -54.0 -75
+25.48 -41.9 -119
+26.12 -27.3 -165
+26.76 -14.8 -215
+27.40 -5.7 -264
+28.04 -3.7 -296
+28.68 -1.7 -316
+29.32 -1.7 -319
+29.96 -1.7 -300
+30.60 -1.7 -271
+31.24 -1.7 -236
+31.88 -1.2 -203
+32.52 -1.2 -153
+33.16 -1.2 -91
+33.80 -1.2 -27
+34.44 -1.2 41
+35.08 -1.7 99
+35.72 -1.7 150
+36.36 -1.7 198
+37.00 -1.7 238
+37.64 -1.7 272
+38.28 -3.2 299
+38.92 -3.2 308
+39.56 -3.7 303
+40.20 -5.7 272
+40.84 -9.7 234
+41.48 -19.3 182
+42.12 -29.8 134
+42.76 -37.9 82
+43.40 -41.4 32
+44.04 -41.4 -19
+44.68 -37.9 -66
+45.32 -29.8 -111
+45.96 -19.8 -160
+46.60 -9.7 -216
+47.24 -5.7 -256
+47.88 -3.7 -292
+48.52 -1.7 -313
+49.16 -1.7 -320
+49.80 -1.7 -305
+50.44 -1.2 -276
+51.08 -1.7 -244
+51.72 -1.7 -208
+52.36 -1.2 -168
+53.00 0.3 -107
+53.64 -1.2 -40
+54.28 -1.2 25
+54.92 -1.2 86
+55.56 -1.7 138
+56.20 -1.7 186
+56.84 -1.7 227
+57.48 -3.2 266
+58.12 -1.7 291
+58.76 -3.2 310
+59.40 -3.7 306
+60.04 -3.7 283
+60.68 -5.7 249
+61.32 -10.7 210
+61.96 -17.8 157
+62.60 -25.8 105
+63.24 -29.8 49
+63.88 -29.8 -7
+64.52 -28.8 -52
+65.16 -23.3 -103
+65.80 -15.8 -152
+66.44 -7.7 -205
+67.08 -5.2 -248
+67.72 -3.2 -284
+68.36 -1.7 -308
+69.00 -1.7 -317
+69.64 -1.7 -315
+70.28 -1.7 -287
+70.92 -1.7 -252
+71.56 -1.2 -216
+72.20 -0.7 -180
+72.84 -1.2 -123
+73.48 0.3 -58
+74.12 0.3 12
+74.76 -1.2 67
+75.40 -1.2 123
+76.04 -1.7 174
+76.68 -1.7 221
+77.32 -1.7 256
+77.96 -1.7 284
+78.60 -1.7 307
+79.24 -1.7 308
+79.88 -3.7 292
+80.52 -5.7 259
+81.16 -7.2 222
+81.80 -11.7 181
+82.44 -17.8 126
+83.08 -23.3 69
+83.72 -23.8 9
+84.36 -23.3 -40
+85.00 -19.8 -91
+85.64 -13.2 -139
+86.28 -7.7 -196
+86.92 -3.7 -240
+87.56 -3.2 -276
+88.20 -1.7 -305
+88.84 -1.7 -320
+89.48 -1.2 -316
+90.12 -1.2 -292
+90.76 -1.7 -263
+91.40 -1.2 -228
+92.04 -1.2 -189
+92.68 0.3 -141
+93.32 0.3 -78
+93.96 0.3 -7
+94.60 0.3 50
+95.24 -1.2 113
+95.88 -1.7 165
+96.52 -1.7 207
+97.16 -1.7 246
+97.80 -1.7 280
+98.44 -1.7 303
+99.08 -2.7 311
+99.72 -3.2 299
+100.36 -3.7 270
+101.00 -5.7 233
+101.64 -9.2 194
+102.28 -13.2 146
+102.92 -17.8 87
+103.56 -19.8 28
+104.20 -19.8 -27
+104.84 -17.3 -75
+105.48 -13.2 -131
+106.12 -7.7 -187
+106.76 -5.2 -229
+107.40 -3.2 -268
+108.04 -1.7 -300
+108.68 -1.7 -317
+109.32 -1.7 -320
+109.96 -1.2 -300
+110.60 -1.2 -271
+111.24 -1.2 -236
+111.88 -0.7 -200
+112.52 0.3 -156
+113.16 0.3 -91
+113.80 0.8 -27
+114.44 0.3 37
+115.08 0.3 98
+115.72 -1.2 150
+116.36 -1.7 195
+117.00 -1.7 238
+117.64 -1.7 272
+118.28 -1.7 298
+118.92 -1.7 310
+119.56 -2.7 303
+120.20 -3.7 278
+120.84 -4.7 242
+121.48 -7.2 205
+122.12 -9.7 162
+122.76 -13.8 106
+123.40 -17.3 41
+124.04 -17.3 -15
+124.68 -15.8 -67
+125.32 -11.7 -119
+125.96 -7.7 -175
+126.60 -5.2 -219
+127.24 -3.7 -260
+127.88 -1.7 -292
+128.52 -1.7 -313
+129.16 -1.2 -320
+129.80 -1.7 -308
+130.44 -1.2 -280
+131.08 -1.2 -245
+131.72 0.3 -211
+132.36 0.3 -165
+133.00 0.3 -110
+133.64 0.8 -43
+134.28 0.3 22
+134.92 0.3 85
+135.56 -1.2 134
+136.20 -1.2 186
+136.84 -1.7 230
+137.48 -1.7 267
+138.12 -1.7 291
+138.76 -2.7 311
+139.40 -3.2 308
+140.04 -3.7 287
+140.68 -4.7 255
+141.32 -5.7 217
+141.96 -7.7 178
+142.60 -11.7 126
+143.24 -14.8 62
+143.88 -15.8 1
+144.52 -13.8 -51
+145.16 -11.2 -107
+145.80 -7.7 -160
+146.44 -5.2 -212
+147.08 -3.2 -252
+147.72 -1.7 -284
+148.36 -1.7 -308
+149.00 -1.2 -323
+149.64 -1.7 -312
+150.28 -1.7 -288
+150.92 -1.2 -253
+151.56 -1.2 -220
+152.20 0.3 -177
+152.84 0.3 -123
+153.48 0.8 -59
+154.12 0.3 8
+154.76 0.3 69
+155.40 0.3 123
+156.04 -1.2 171
+156.68 -1.7 218
+157.32 -1.7 255
+157.96 -2.7 284
+158.60 -2.7 305
+159.24 -3.2 311
+159.88 -3.2 295
+160.52 -3.7 260
+161.16 -5.7 227
+161.80 -7.7 187
+162.44 -9.7 142
+163.08 -11.7 79
+163.72 -13.8 14
+164.36 -13.8 -43
+165.00 -11.7 -92
+165.64 -7.7 -148
+166.28 -5.7 -199
+166.92 -3.2 -237
+167.56 -2.7 -279
+168.20 -1.7 -304
+168.84 -1.7 -318
+169.48 -1.7 -316
+170.12 -1.7 -296
+170.76 -1.2 -261
+171.40 0.3 -228
+172.04 0.3 -188
+172.68 0.3 -139
+173.32 0.8 -75
+173.96 0.8 -7
+174.60 0.3 54
+175.24 0.3 110
+175.88 -1.2 159
+176.52 -1.7 207
+177.16 -1.7 246
+177.80 -1.7 279
+178.44 -1.7 303
+}\rushB
+
+%% scope_7.csv (reduziert)
+\pgfplotstableread{
+t i u
+-20.60 -1.7 314
+-19.96 -1.7 303
+-19.32 -1.7 279
+-18.68 -1.7 246
+-18.04 -1.7 213
+-17.40 -1.7 174
+-16.76 -1.7 122
+-16.12 -1.7 58
+-15.48 -1.7 -11
+-14.84 -1.7 -75
+-14.20 -1.7 -131
+-13.56 -1.7 -180
+-12.92 -1.7 -228
+-12.28 -1.7 -264
+-11.64 -1.7 -292
+-11.00 -1.7 -313
+-10.36 -1.7 -320
+-9.72 -1.7 -307
+-9.08 -1.7 -279
+-8.44 -1.7 -244
+-7.80 -1.7 -211
+-7.16 -1.7 -167
+-6.52 -1.7 -107
+-5.88 -1.7 -43
+-5.24 -1.7 23
+-4.60 -2.7 83
+-3.96 -3.2 139
+-3.32 -3.2 186
+-2.68 -3.7 226
+-2.04 -5.7 259
+-1.40 -13.2 274
+-0.76 -29.8 254
+-0.12 -55.5 213
+0.52 -83.6 165
+1.16 -112.2 107
+1.80 -133.9 74
+2.44 -144.4 58
+3.08 -148.9 40
+3.72 -149.4 21
+4.36 -143.4 -4
+5.00 -126.3 -31
+5.64 -102.2 -72
+6.28 -76.1 -126
+6.92 -53.4 -168
+7.56 -29.8 -212
+8.20 -13.8 -264
+8.84 -5.7 -304
+9.48 -3.7 -319
+10.12 -1.7 -312
+10.76 -1.7 -284
+11.40 -1.7 -252
+12.04 -1.7 -217
+12.68 -1.7 -176
+13.32 -1.7 -123
+13.96 -1.7 -59
+14.60 -1.7 9
+15.24 -1.7 74
+15.88 -1.7 127
+16.52 -1.7 177
+17.16 -1.7 221
+17.80 -1.7 256
+18.44 -1.7 287
+19.08 -3.2 307
+19.72 -5.7 306
+20.36 -9.2 283
+21.00 -18.8 229
+21.64 -33.9 175
+22.28 -49.4 130
+22.92 -62.0 87
+23.56 -66.0 41
+24.20 -68.0 -3
+24.84 -64.0 -43
+25.48 -54.0 -87
+26.12 -41.4 -130
+26.76 -25.8 -175
+27.40 -13.8 -225
+28.04 -5.7 -272
+28.68 -3.7 -300
+29.32 -1.7 -319
+29.96 -1.7 -313
+30.60 -1.7 -292
+31.24 -1.7 -260
+31.88 -1.7 -228
+32.52 -1.7 -188
+33.16 -1.2 -136
+33.80 -1.2 -75
+34.44 -1.2 -7
+35.08 -1.2 55
+35.72 -1.7 113
+36.36 -3.2 166
+37.00 -1.7 210
+37.64 -2.7 250
+38.28 -1.7 279
+38.92 -1.7 303
+39.56 -3.2 308
+40.20 -5.2 295
+40.84 -7.2 263
+41.48 -13.2 218
+42.12 -23.3 166
+42.76 -33.9 118
+43.40 -41.9 69
+44.04 -43.9 14
+44.68 -43.4 -31
+45.32 -37.9 -79
+45.96 -27.8 -123
+46.60 -17.8 -172
+47.24 -7.7 -225
+47.88 -5.2 -265
+48.52 -3.2 -296
+49.16 -1.7 -316
+49.80 -1.7 -316
+50.44 -1.7 -300
+51.08 -1.7 -268
+51.72 -1.7 -236
+52.36 -1.2 -200
+53.00 -1.2 -152
+53.64 -1.2 -90
+54.28 0.3 -23
+54.92 -1.2 38
+55.56 -1.2 98
+56.20 -1.7 148
+56.84 -1.7 201
+57.48 -1.7 238
+58.12 -3.2 271
+58.76 -1.7 298
+59.40 -1.7 311
+60.04 -3.7 303
+60.68 -5.2 275
+61.32 -7.2 237
+61.96 -13.2 194
+62.60 -21.3 142
+63.24 -27.8 86
+63.88 -31.8 33
+64.52 -31.8 -16
+65.16 -29.3 -67
+65.80 -23.3 -115
+66.44 -13.8 -164
+67.08 -7.7 -220
+67.72 -4.7 -260
+68.36 -3.2 -292
+69.00 -1.7 -312
+69.64 -1.7 -320
+70.28 -1.7 -307
+70.92 -1.7 -276
+71.56 -1.7 -243
+72.20 -1.2 -208
+72.84 -1.2 -164
+73.48 0.3 -107
+74.12 0.3 -39
+74.76 0.3 25
+75.40 -1.2 83
+76.04 -1.2 138
+76.68 -1.7 186
+77.32 -1.7 230
+77.96 -1.7 266
+78.60 -3.2 292
+79.24 -3.2 308
+79.88 -3.2 306
+80.52 -3.7 283
+81.16 -5.2 250
+81.80 -7.7 211
+82.44 -13.8 166
+83.08 -19.8 110
+83.72 -23.8 50
+84.36 -25.3 -4
+85.00 -23.8 -55
+85.64 -19.3 -103
+86.28 -11.7 -156
+86.92 -7.2 -212
+87.56 -3.7 -252
+88.20 -3.2 -284
+88.84 -1.7 -308
+89.48 -1.7 -320
+90.12 -1.7 -309
+90.76 -1.7 -284
+91.40 -1.2 -249
+92.04 -1.2 -216
+92.68 0.3 -177
+93.32 0.3 -123
+93.96 0.3 -59
+94.60 0.3 9
+95.24 0.3 70
+95.88 -1.2 125
+96.52 -1.7 174
+97.16 -1.7 218
+97.80 -1.7 256
+98.44 -3.2 287
+99.08 -1.7 307
+99.72 -3.2 311
+100.36 -3.7 291
+101.00 -3.7 259
+101.64 -5.7 222
+102.28 -9.7 178
+102.92 -15.3 127
+103.56 -19.8 70
+104.20 -21.3 13
+104.84 -21.3 -43
+105.48 -17.3 -92
+106.12 -11.2 -147
+106.76 -5.7 -200
+107.40 -5.2 -237
+108.04 -3.2 -276
+108.68 -1.7 -307
+109.32 -1.7 -320
+109.96 -1.2 -316
+110.60 -1.7 -292
+111.24 -1.7 -260
+111.88 -1.2 -228
+112.52 0.3 -188
+113.16 0.3 -138
+113.80 0.3 -72
+114.44 0.3 -7
+115.08 0.3 54
+115.72 0.3 111
+116.36 -1.7 163
+117.00 -1.7 209
+117.64 -1.7 247
+118.28 -3.2 279
+118.92 -3.2 303
+119.56 -1.7 311
+120.20 -3.2 298
+120.84 -3.7 267
+121.48 -5.2 230
+122.12 -7.7 194
+122.76 -11.7 150
+123.40 -15.8 87
+124.04 -17.8 29
+124.68 -17.8 -27
+125.32 -15.3 -79
+125.96 -11.2 -135
+126.60 -7.2 -185
+127.24 -4.7 -232
+127.88 -3.2 -268
+128.52 -1.7 -297
+129.16 -1.7 -316
+129.80 -1.7 -317
+130.44 -1.7 -300
+131.08 -1.7 -268
+131.72 -1.2 -235
+132.36 -1.2 -200
+133.00 0.3 -152
+133.64 0.3 -91
+134.28 0.3 -26
+134.92 0.3 40
+135.56 0.3 98
+136.20 -1.7 147
+136.84 -1.7 198
+137.48 -1.7 234
+138.12 -1.7 272
+138.76 -1.7 295
+139.40 -3.2 311
+140.04 -3.2 304
+140.68 -3.2 279
+141.32 -4.7 245
+141.96 -5.7 203
+142.60 -9.7 162
+143.24 -13.2 106
+143.88 -15.3 45
+144.52 -15.8 -12
+145.16 -13.8 -68
+145.80 -11.2 -123
+146.44 -7.2 -176
+147.08 -5.2 -220
+147.72 -3.2 -260
+148.36 -1.7 -289
+149.00 -1.7 -315
+149.64 -1.7 -320
+150.28 -1.2 -307
+150.92 -1.2 -279
+151.56 -1.2 -244
+152.20 -0.7 -208
+152.84 0.3 -164
+153.48 0.3 -106
+154.12 0.8 -39
+154.76 0.3 24
+155.40 0.3 83
+156.04 0.3 138
+156.68 -1.7 187
+157.32 -1.7 226
+157.96 -1.7 264
+158.60 -2.7 295
+159.24 -1.7 310
+159.88 -3.2 307
+160.52 -3.7 284
+161.16 -5.2 254
+161.80 -5.7 218
+162.44 -7.7 177
+163.08 -9.7 125
+163.72 -13.8 62
+164.36 -13.8 1
+165.00 -13.2 -54
+165.64 -9.7 -111
+166.28 -7.7 -164
+166.92 -3.7 -211
+167.56 -3.2 -252
+168.20 -1.7 -287
+168.84 -1.7 -308
+169.48 -1.7 -320
+170.12 -1.7 -312
+170.76 -1.7 -285
+171.40 -1.7 -253
+172.04 0.3 -216
+172.68 0.3 -177
+173.32 0.3 -123
+173.96 0.8 -59
+174.60 0.3 9
+175.24 0.3 70
+175.88 0.3 127
+176.52 -1.2 174
+177.16 -1.7 219
+177.80 -1.7 255
+178.44 -1.7 287
+}\rushC
+
 \begin{document}
 
 \title{2.~Versuchsprotokoll zum Versuch~2 -- Drehstromtransformator\\[0.5em]
@@ -80,7 +1036,281 @@ Der Versuch gliedert sich in folgende Teile:
 
 %==================================================
 \chapter{Versuchsvorbereitende Aufgaben}
-\input{vorbereitung}
+% Versuchsvorbereitende Aufgaben (Kapitel 2)
+\section{Parallelschaltung von Transformatoren}\label{sec:a1}
+
+\begin{aufgabe}{Aufgabenstellung}
+Geben Sie einige Schaltgruppenkombinationen an, die parallelgeschaltet werden können. Was ist bei der Parallelschaltung von Transformatoren darüber hinaus zu beachten?
+\end{aufgabe}
+
+\textbf{Schaltgruppenkombinationen.} Zwei Transformatoren dürfen parallelgeschaltet werden, wenn sie dieselbe Kennzahl (Uhrzeigerzahl, $\varphi = \text{Kennzahl}\cdot\SI{30}{\degree}$) besitzen, da sonst zwischen den Sekundärseiten eine Spannungsdifferenz auftritt und ein Ausgleichsstrom fließt. Nach Abbildung~1.1 ergeben sich folgende Gruppen:
+
+\begin{center}
+\begin{tabular}{@{}cl@{}}
+\toprule
+Kennzahl & parallelschaltbare Schaltgruppen\\
+\midrule
+0  & Dd0 $\parallel$ Yy0 $\parallel$ Dz0\\
+5  & Dy5 $\parallel$ Yd5 $\parallel$ Yz5\\
+6  & Dd6 $\parallel$ Yy6 $\parallel$ Dz6\\
+11 & Dy11 $\parallel$ Yd11 $\parallel$ Yz11\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Darüber hinaus lassen sich Transformatoren \emph{verschiedener} Kennzahl durch Vertauschen von Anschlüssen anpassen:
+\begin{itemize}[nosep]
+  \item Kennzahlen $0$, $4$, $8$ (sowie $2$, $6$, $10$) gehen durch \emph{zyklisches} Vertauschen der Außenleiter ineinander über (Drehung um $\pm\SI{120}{\degree}$).
+  \item Kennzahlen $5$ und $11$ können durch Vertauschen zweier Außenleiter aneinander angepasst werden (z.\,B.\ Dy5 $\parallel$ Dy11).
+\end{itemize}
+
+\textbf{Weitere Bedingungen für die Parallelschaltung:}
+\begin{itemize}[nosep]
+  \item \textbf{Gleiche Nennspannungen bzw.\ gleiches Übersetzungsverhältnis} $\ue$ auf Ober- und Unterspannungsseite. Abweichungen führen zu Ausgleichsströmen (Kreisströmen) schon im Leerlauf.
+  \item \textbf{Gleiche relative Kurzschlussspannung} $u_\mathrm{k}$ (zulässige Abweichung etwa $\SI{10}{\percent}$). Die Last teilt sich umgekehrt proportional zu $u_\mathrm{k}$ auf:
+  \begin{equation*}
+    \frac{S_1}{S_2} = \frac{S_\mathrm{N1}/u_\mathrm{k1}}{S_\mathrm{N2}/u_\mathrm{k2}}
+  \end{equation*}
+  Der Transformator mit dem kleineren $u_\mathrm{k}$ wird zuerst überlastet.
+  \item \textbf{Ähnliches Verhältnis $R_\mathrm{k}/X_\mathrm{k}$} (gleicher Kurzschlusswinkel $\varphi_\mathrm{k}$), damit sich die Teilströme phasenrichtig addieren.
+  \item \textbf{Nennleistungsverhältnis} nicht größer als etwa $3:1$.
+  \item \textbf{Gleiche Frequenz und gleiche Phasenfolge (Drehsinn)}.
+\end{itemize}
+
+\section{Ströme, Spannungen und Scheinleistung}\label{sec:a2}
+
+\begin{aufgabe}{Aufgabenstellung}
+Bestimmen Sie für die Schaltungen in Abbildung~2.1 die maximal möglichen Ströme und Nennspannungen auf der Primär- und der Sekundärseite sowie die Trafo-Scheinleistung. Nehmen Sie hierfür die Daten des Trafos aus dem Laborversuch.
+\end{aufgabe}
+
+\textbf{Nenndaten des Prüflings (Tabelle~2):}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Größe & Primär & Sekundär\\
+\midrule
+Nennspannung & $\SI{220}{V}$ je Strang & $\SI{110}{V}$ je Halbstrang\\
+Nennstrom & $\SI{45.5}{A}$ je Strang & $\SI{45.5}{A}$ je Halbstrang\\
+\bottomrule
+\end{tabular}
+\end{center}
+Die Primärseite ist in allen Schaltungen in Stern geschaltet. Jeder Sekundärstrang besteht aus zwei Halbsträngen (je fünf Wicklungsteile in Reihe), die in Reihe oder parallel geschaltet werden können. Damit gilt für die Stranggrößen:
+\begin{equation*}
+  \text{Reihenschaltung: } \SI{220}{V},\ \SI{45.5}{A}
+  \qquad
+  \text{Parallelschaltung: } \SI{110}{V},\ \SI{91}{A}
+\end{equation*}
+
+\begin{hinweis}[Zuordnung der Schaltungen in Abbildung 2.1 der Versuchsanleitung]
+Die vier Schaltungen werden im Folgenden so bezeichnet:\\
+\textbf{(a)}~oben links: Sekundär Stern, beide Halbstränge je Strang in \emph{Reihe}.\quad
+\textbf{(b)}~oben rechts: Sekundär Stern, beide Halbstränge je Strang \emph{parallel}.\\
+\textbf{(c)}~unten links: Sekundär Stern, nur \emph{ein} Halbstrang je Strang.\quad
+\textbf{(d)}~unten rechts: Sekundär \emph{Zickzack} aus Halbsträngen verschiedener Schenkel.
+\end{hinweis}
+
+\paragraph{Rechenweg}
+
+\textbf{Primärseite (Stern):}
+\begin{equation*}
+  U_{1,\mathrm{Str}} = \SI{220}{V}, \qquad
+  U_{1} = \sqrt{3}\cdot\SI{220}{V} \approx \SI{381}{V}, \qquad
+  I_{1,\max} = \SI{45.5}{A}
+\end{equation*}
+
+\textbf{(a) Y/Y, Halbstränge in Reihe:}
+\begin{align*}
+  U_{2,\mathrm{Str}} &= 2\cdot\SI{110}{V} = \SI{220}{V}, &
+  U_2 &= \sqrt{3}\cdot\SI{220}{V} \approx \SI{381}{V}, &
+  I_2 &= \SI{45.5}{A}\\
+  \ue &= \frac{U_1}{U_2} = 1, &
+  I_1 &= \SI{45.5}{A}, &
+  S &= \sqrt{3}\cdot\SI{381}{V}\cdot\SI{45.5}{A} \approx \SI{30}{kVA}
+\end{align*}
+
+\textbf{(b) Y/Y, Halbstränge parallel:}
+\begin{align*}
+  U_{2,\mathrm{Str}} &= \SI{110}{V}, &
+  U_2 &= \sqrt{3}\cdot\SI{110}{V} \approx \SI{190.5}{V}, &
+  I_2 &= 2\cdot\SI{45.5}{A} = \SI{91}{A}\\
+  \ue &= \frac{\SI{381}{V}}{\SI{190.5}{V}} = 2, &
+  I_1 &= \frac{I_2}{\ue} = \SI{45.5}{A}, &
+  S &= \sqrt{3}\cdot\SI{190.5}{V}\cdot\SI{91}{A} \approx \SI{30}{kVA}
+\end{align*}
+
+\textbf{(c) Y/Y, ein Halbstrang je Strang:}
+\begin{align*}
+  U_{2,\mathrm{Str}} &= \SI{110}{V}, &
+  U_2 &= \SI{190.5}{V}, &
+  I_2 &= \SI{45.5}{A}\\
+  \ue &= 2, &
+  I_1 &= \frac{I_2}{\ue} = \SI{22.75}{A}, &
+  S &= \sqrt{3}\cdot\SI{190.5}{V}\cdot\SI{45.5}{A} \approx \SI{15}{kVA}
+\end{align*}
+Der Sekundärstrom ist durch den Halbstrang begrenzt, daher wird die Primärseite nur zur Hälfte ausgelastet.
+
+\textbf{(d) Y/Zickzack:} Jede Zickzack-Phase besteht aus zwei Halbsträngen verschiedener Schenkel (Spannungen um $\SI{120}{\degree}$ verschoben), die geometrisch addiert werden:
+\begin{align*}
+  U_{2,\mathrm{Str}} &= |\underline{U}_\mathrm{U} - \underline{U}_\mathrm{V}| = \sqrt{3}\cdot\SI{110}{V} \approx \SI{190.5}{V}, &
+  U_2 &= \sqrt{3}\cdot U_{2,\mathrm{Str}} = 3\cdot\SI{110}{V} = \SI{330}{V}\\
+  I_2 &= \SI{45.5}{A}, &
+  \ue &= \frac{\SI{381}{V}}{\SI{330}{V}} = \frac{2}{\sqrt{3}} \approx 1{,}155\\
+  I_1 &= \frac{I_2}{\ue} \approx \SI{39.4}{A}, &
+  S &= \sqrt{3}\cdot\SI{330}{V}\cdot\SI{45.5}{A} \approx \SI{26}{kVA}
+\end{align*}
+Die Scheinleistung beträgt nur $\frac{\sqrt{3}}{2} \approx \SI{86.6}{\percent}$ der Nennleistung, da sich die Halbstrangspannungen geometrisch statt arithmetisch addieren. Sekundärseitig fließt ein höherer Strom als primärseitig.
+
+\begin{ergebnis}[Ergebnis Aufgabe 2]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}cl*{7}{r}@{}}
+\toprule
+ & Sek.-Schaltung & $U_1$ & $I_1$ & $U_{2,\mathrm{Str}}$ & $U_2$ & $I_2$ & $\ue$ & $S$\\
+ &  & in V & in A & in V & in V & in A & & in kVA\\
+\midrule
+(a) & Y, Reihe    & 381 & 45,5  & 220   & 381   & 45,5 & 1     & 30\\
+(b) & Y, parallel & 381 & 45,5  & 110   & 190,5 & 91   & 2     & 30\\
+(c) & Y, 1 Halbstr. & 381 & 22,75 & 110 & 190,5 & 45,5 & 2     & 15\\
+(d) & Zickzack    & 381 & 39,4  & 190,5 & 330   & 45,5 & 1,155 & 26\\
+\bottomrule
+\end{tabular}
+\end{ergebnis}
+
+\section{Klemmenbezeichnungen und Schaltgruppen}\label{sec:a3}
+
+\begin{aufgabe}{Aufgabenstellung}
+Ergänzen Sie die Klemmenbezeichnungen in Abbildung~2.1. Welche Phasenverschiebungen zwischen Primär- und Sekundärseite sind bei unveränderter Schaltung der Primärwicklung für die obigen Beispiele möglich? Schaltgruppe und Gradzahl. Orientieren Sie sich bei der Klemmenbezeichnung am Prüfling in Abbildung~3.2.
+\end{aufgabe}
+
+\textbf{Primärseite (alle Schaltungen):} Die beiden Wicklungsteile je Strang sind in Reihe geschaltet (U4--U3). Die Netzanschlüsse sind U1, V1, W1 (oben), der Sternpunkt wird aus U2, V2, W2 (unten) gebildet.
+
+\textbf{Sekundärseite:} Je Schenkel gibt es zwei Halbstränge, z.\,B.\ für Schenkel U die Halbstränge 2U1--2U2 und 3U1--3U2 (entsprechend V und W). Die fünf Wicklungsteile eines Halbstrangs sind bereits verbunden.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}cp{4.3cm}p{4.3cm}p{2.6cm}@{}}
+\toprule
+ & Sternpunkt / Brücken & Ausgangsklemmen & Schaltgruppe\\
+\midrule
+(a) & Brücken 2U2--3U1, 2V2--3V1, 2W2--3W1; Sternpunkt: 2U1, 2V1, 2W1 & 3U2, 3V2, 3W2 & Yy6 (180°)\\
+    & Anschlüsse vertauscht: Sternpunkt 3U2, 3V2, 3W2 & 2U1, 2V1, 2W1 & Yy0 (0°)\\
+\midrule
+(b) & Parallelschaltung 2U1$\parallel$3U1 usw.; Sternpunkt: 2U1, 3U1, 2V1, 3V1, 2W1, 3W1 & 2U2$\parallel$3U2, 2V2$\parallel$3V2, 2W2$\parallel$3W2 & Yy6 (180°)\\
+    & Anschlüsse vertauscht & 2U1$\parallel$3U1, \ldots & Yy0 (0°)\\
+\midrule
+(c) & Sternpunkt: 2U1, 2V1, 2W1 & 2U2, 2V2, 2W2 & Yy6 (180°)\\
+    & Anschlüsse vertauscht: Sternpunkt 2U2, 2V2, 2W2 & 2U1, 2V1, 2W1 & Yy0 (0°)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Bei Schaltungen (a) bis (c) liegen Primär- und Sekundärwicklung auf demselben Schenkel. Die Sekundärspannung ist daher entweder in Phase oder genau gegenphasig zur Primärspannung. Je nachdem, ob Wicklungsanfang oder Wicklungsende als Klemme genutzt wird, ergeben sich:
+\begin{equation*}
+  \text{Yy0: } 0\cdot\SI{30}{\degree} = \SI{0}{\degree}
+  \qquad\text{oder}\qquad
+  \text{Yy6: } 6\cdot\SI{30}{\degree} = \SI{180}{\degree}
+\end{equation*}
+
+\textbf{(d) Zickzack:} Hier werden Halbstränge \emph{verschiedener} Schenkel in Reihe geschaltet. Die Phasenspannung ist die Differenz zweier um $\SI{120}{\degree}$ verschobener Strangspannungen.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8,>=stealth,thick]
+  \draw[->,blue!60!black] (0,0) -- (2,0) node[right] {$\underline{U}_\mathrm{U}$};
+  \draw[->,blue!60!black] (0,0) -- (-1,-1.732) node[below left] {$\underline{U}_\mathrm{V}$};
+  \draw[->,gray] (0,0) -- (1,1.732) node[above] {$-\underline{U}_\mathrm{V}$};
+  \draw[->,red!70!black,very thick] (0,0) -- (3,1.732) node[above right] {$\underline{U}_a=\underline{U}_\mathrm{U}-\underline{U}_\mathrm{V}$};
+  \draw[dashed,gray] (2,0) -- (3,1.732);
+  \draw[dashed,gray] (1,1.732) -- (3,1.732);
+  \draw (0.9,0) arc (0:30:0.9) node[midway,right] {\small $30^\circ$};
+\end{tikzpicture}
+\end{center}
+
+\begin{equation*}
+  |\underline{U}_a| = \sqrt{3}\,U_\mathrm{Str}\ \text{(Halbstrang)}, \qquad
+  \text{Lage: } \pm\SI{30}{\degree}\ \text{bzw.}\ \SI{180}{\degree}\pm\SI{30}{\degree}
+\end{equation*}
+
+Je nach Wahl der beteiligten Halbstränge und ihrer Polung sind bei gleicher Primärschaltung vier Schaltgruppen möglich:
+
+\begin{center}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+Schaltgruppe & Verschaltung der Phase $a$ & Lage von $\underline{U}_a$ (voreilend) & Phasenverschiebung\\
+\midrule
+Yz11 & $\underline{U}_\mathrm{U}-\underline{U}_\mathrm{V}$ & $+\SI{30}{\degree}$  & $11\cdot\SI{30}{\degree}=\SI{330}{\degree}$\\
+Yz5  & $\underline{U}_\mathrm{V}-\underline{U}_\mathrm{U}$ & $+\SI{210}{\degree}$ & $5\cdot\SI{30}{\degree}=\SI{150}{\degree}$\\
+Yz1  & $\underline{U}_\mathrm{U}-\underline{U}_\mathrm{W}$ & $-\SI{30}{\degree}$  & $1\cdot\SI{30}{\degree}=\SI{30}{\degree}$\\
+Yz7  & $\underline{U}_\mathrm{W}-\underline{U}_\mathrm{U}$ & $+\SI{150}{\degree}$ & $7\cdot\SI{30}{\degree}=\SI{210}{\degree}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Klemmenbezeichnung für Yz11} (Phase $a$ aus Halbstrang 2U vorwärts und 3V rückwärts, entsprechend zyklisch weiter):
+\begin{center}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Klemme & Brücke & Sternpunkt\\
+\midrule
+Phase 1 & 2U1 & 2U2--3V2 & 3V1\\
+Phase 2 & 2V1 & 2V2--3W2 & 3W1\\
+Phase 3 & 2W1 & 2W2--3U2 & 3U1\\
+\bottomrule
+\end{tabular}
+\end{center}
+Die Sternpunktklemmen 3U1, 3V1 und 3W1 werden miteinander verbunden. Für \textbf{Yz5} wird jede Phase in umgekehrter Richtung durchlaufen: Klemme 2U2, Brücke 2U1--3V1, Sternpunkt 3V2 (entsprechend für V und W).
+
+\begin{ergebnis}[Ergebnis Aufgabe 3]
+\begin{itemize}[nosep]
+  \item Schaltungen (a), (b), (c) (Yy): \textbf{Yy0 ($\SI{0}{\degree}$)} und \textbf{Yy6 ($\SI{180}{\degree}$)}.
+  \item Schaltung (d) (Yz): \textbf{Yz1 ($\SI{30}{\degree}$)}, \textbf{Yz5 ($\SI{150}{\degree}$)}, \textbf{Yz7 ($\SI{210}{\degree}$)}, \textbf{Yz11 ($\SI{330}{\degree}$)}.
+\end{itemize}
+\end{ergebnis}
+
+\section{Rush-Effekt}\label{sec:a4}
+
+\begin{aufgabe}{Aufgabenstellung}
+Was ist der Rush-Effekt bei Transformatoren und wodurch wird dieser ausgelöst? Beschreiben Sie mehrere Maßnahmen, um den Rush-Effekt zu reduzieren.
+\end{aufgabe}
+
+\textbf{Was ist der Rush-Effekt?} Beim Einschalten eines Transformators (meist im Leerlauf) tritt kurzzeitig ein sehr hoher Einschaltstromstoß (Inrush-Strom) auf. Er kann ein Vielfaches des Nennstroms erreichen (typisch das $5$- bis $10$-fache, im Extremfall mehr) und klingt erst nach mehreren Perioden bis Sekunden ab. Der Strom ist stark unsymmetrisch (Gleichanteil) und reich an Oberschwingungen, besonders der 2.~Harmonischen.
+
+\textbf{Ursache:} Der magnetische Fluss kann sich nicht sprunghaft ändern. Wird die Spannung $u(t)=\hat{u}\sin(\omega t+\alpha)$ zum Zeitpunkt $t=0$ aufgeschaltet, gilt für den Fluss
+\begin{equation*}
+  \Phi(t) = \underbrace{-\hat{\Phi}\cos(\omega t+\alpha)}_{\text{stationär}}
+            + \underbrace{\hat{\Phi}\cos\alpha}_{\text{Gleichanteil}}
+            + \Phi_\mathrm{R},
+  \qquad \hat{\Phi}=\frac{\hat{u}}{\omega N}
+\end{equation*}
+mit der Remanenz $\Phi_\mathrm{R}$ des Kerns. Im ungünstigsten Fall (Einschalten im Spannungsnulldurchgang, $\alpha=0$, Remanenz gleichgerichtet) erreicht der Fluss
+\begin{equation*}
+  \Phi_{\max} \approx 2\hat{\Phi} + \Phi_\mathrm{R}.
+\end{equation*}
+Da der Transformator im Nennbetrieb schon nahe an der Sättigungsgrenze arbeitet, geht der Kern in die Sättigung. Die Induktivität sinkt dort auf den Wert der Luftspule, und der Magnetisierungsstrom steigt stark nichtlinear an. Beim Einschalten im Spannungsmaximum ($\alpha=\SI{90}{\degree}$) tritt dagegen kein Gleichanteil auf und kein Rush-Effekt (bei $\Phi_\mathrm{R}=0$).
+
+Der Einschaltstrom hängt damit ab von:
+\begin{itemize}[nosep]
+  \item dem Einschaltzeitpunkt (Schaltwinkel $\alpha$),
+  \item der Remanenz des Kerns,
+  \item der Sättigungskennlinie bzw.\ der Induktion im Nennbetrieb,
+  \item der Netz- und Wicklungsimpedanz (bestimmt die Abklingzeit des Gleichanteils).
+\end{itemize}
+
+\textbf{Maßnahmen zur Reduzierung:}
+\begin{itemize}[nosep]
+  \item \textbf{Synchronisiertes Einschalten} (Point-on-Wave, z.\,B.\ mit Halbleiterrelais): Einschalten im Spannungsmaximum, bei Kenntnis der Remanenz mit angepasstem Winkel.
+  \item \textbf{Vorwiderstände bzw.\ Einschaltstrombegrenzer} (z.\,B.\ Widerstand mit Überbrückungsschütz nach dem Hochlauf, NTC-Widerstände).
+  \item \textbf{Spannung langsam hochfahren}: Stelltransformator oder Sanftanlauf (Phasenanschnitt, Softstarter), damit sich der Fluss stetig aufbaut.
+  \item \textbf{Niedrigere Auslegungsinduktion} (größerer Eisenquerschnitt, mehr Abstand zur Sättigung) oder Luftspalt im Kern, wodurch die Remanenz sinkt. Nachteil: höhere Kosten, größeres Gewicht bzw.\ höherer Magnetisierungsstrom.
+  \item \textbf{Entmagnetisieren} bzw.\ definierte Remanenz einstellen.
+  \item \textbf{Sequentielles Einschalten} der Phasen bzw.\ mehrerer Transformatoren, damit sich die Einschaltströme nicht überlagern.
+  \item \textbf{Netzimpedanz bzw.\ Vorschaltdrossel}: Eine größere Impedanz verringert die Stromspitze und beschleunigt das Abklingen.
+\end{itemize}
+
+
+%==================================================
 
 %==================================================
 \chapter{Versuchsaufbau}
@@ -159,7 +1389,7 @@ Für die Auswertung wird das einphasige T-Ersatzschaltbild je Strang verwendet (
 %==================================================
 \chapter{Durchführung und Auswertung}
 
-Alle Messgrößen sind Strangwerte der Primärseite (Spannung, Strom); Leistungen sind Summen über alle drei Stränge. Die Auswertung erfolgt mit dem Python-Skript \texttt{auswertung.py}, das auch alle Diagramme erzeugt.
+Alle Messgrößen sind Strangwerte der Primärseite (Spannung, Strom); Leistungen sind Summen über alle drei Stränge. Die Diagramme zeigen die Messwerte direkt aus den CSV-Dateien der Messung; die Kennwerte wurden mit dem Python-Skript \texttt{auswertung.py} berechnet.
 
 %--------------------------------------------------
 \section{Leerlaufversuch}
@@ -168,7 +1398,11 @@ Bei offener Sekundärseite wurde die primäre Strangspannung in 19 Stufen von \S
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{leerlaufkennlinie.pdf}
+\begin{tikzpicture}
+\begin{axis}[width=0.8\textwidth, height=6cm, grid=major, xlabel={Leerlaufstrom $I_0$ [A]}, ylabel={Strangspannung $U_0$ [V]}, mark size=1.5pt]
+\addplot[blue, mark=*] coordinates {(0.18,56.3) (0.22,70.67) (0.27,84.8) (0.32,97.8) (0.4,114.63) (0.48,128.43) (0.59,142.07) (0.74,156.53) (0.94,171.6) (1.21,187.07) (1.5,200.13) (1.68,206.3) (2.04,217.1) (2.68,231.43) (3.63,245.97) (4.62,255.4) (5.36,262.47) (7.45,274.53) (9.64,286.13)};
+\end{axis}
+\end{tikzpicture}
 \caption{Leerlaufkennlinie $U_0 = f(I_0)$}
 \label{fig:ll}
 \end{figure}
@@ -177,7 +1411,16 @@ Bei offener Sekundärseite wurde die primäre Strangspannung in 19 Stufen von \S
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{leerlaufleistung.pdf}
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.2cm, grid=major, every axis plot/.append style={thick}, mark size=1.5pt, xlabel={Strangspannung $U_0$ [V]}, ylabel={Wirkleistung $P_0$ [W]}]
+\addplot[blue, mark=*] coordinates {(56.3,10) (70.67,20) (84.8,30) (97.8,40) (114.63,50) (128.43,60) (142.07,70) (156.53,90) (171.6,100) (187.07,130) (200.13,150) (206.3,160) (217.1,190) (231.43,220) (245.97,260) (255.4,310) (262.47,330) (274.53,420) (286.13,510)};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.2cm, grid=major, every axis plot/.append style={thick}, mark size=1.5pt, xlabel={Strangspannung $U_0$ [V]}, ylabel={Blindleistung $Q_0$ [var]}, scaled y ticks=false, yticklabel style={/pgf/number format/1000 sep={}}]
+\addplot[red, mark=*] coordinates {(56.3,30) (70.67,40) (84.8,60) (97.8,90) (114.63,130) (128.43,180) (142.07,250) (156.53,340) (171.6,480) (187.07,680) (200.13,910) (206.3,1040) (217.1,1330) (231.43,1900) (245.97,2700) (255.4,3710) (262.47,4240) (274.53,6220) (286.13,8310)};
+\end{axis}
+\end{tikzpicture}
 \caption{Leerlaufversuch: Wirkleistung $P_0$ (links) und Blindleistung $Q_0$ (rechts) über der Strangspannung}
 \label{fig:llp}
 \end{figure}
@@ -245,7 +1488,18 @@ Als primärer Bemessungsstrom gilt bei Yy $I_\mathrm{1N}=\SI{45.5}{A}$ und bei Y
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{kurzschluss.pdf}
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.2cm, grid=major, every axis plot/.append style={thick}, mark size=1.5pt, xlabel={Strangstrom $I_k$ [A]}, ylabel={Strangspannung $U_k$ [V]}, legend pos=north west]
+\addplot[blue, mark=*] coordinates {(17.41,6.33) (31.45,11.07) (40.96,14) (42.8,14.93)}; \addlegendentry{Yy}
+\addplot[red, mark=square*] coordinates {(17.45,6.83) (23.5,8.73) (34.54,12.83)}; \addlegendentry{Yz}
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.2cm, grid=major, every axis plot/.append style={thick}, mark size=1.5pt, xlabel={Strangstrom $I_k$ [A]}, ylabel={Wirkleistung $P_k$ [W]}, legend pos=north west, yticklabel style={/pgf/number format/1000 sep={}}]
+\addplot[blue, mark=*] coordinates {(17.41,230) (31.45,750) (40.96,1230) (42.8,1310)}; \addlegendentry{Yy}
+\addplot[red, mark=square*] coordinates {(17.45,260) (23.5,490) (34.54,1030)}; \addlegendentry{Yz}
+\end{axis}
+\end{tikzpicture}
 \caption{Kurzschlussversuch: Strangspannung (links) und Wirkleistung (rechts) über dem Strangstrom}
 \label{fig:ks}
 \end{figure}
@@ -331,7 +1585,18 @@ ohmsch-kapazitiv & primär & 220,57 & 16,04 & 10,09 & 3,30 & 10,62 & 0,95\\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{belastung.pdf}
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.5cm, ybar, bar width=9pt, ymajorgrids, enlarge x limits=0.25, symbolic x coords={ohmsch,induktiv,kapazitiv}, xtick=data, legend pos=south east, legend style={font=\footnotesize}, ymin=0, ylabel={Wirkleistung $P$ [kW]}]
+\addplot[fill=blue!60] coordinates {(ohmsch,10.40) (induktiv,8.50) (kapazitiv,10.09)}; \addlegendentry{primär}
+\addplot[fill=red!60] coordinates {(ohmsch,10.07) (induktiv,7.93) (kapazitiv,9.69)}; \addlegendentry{sekundär}
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[width=0.47\textwidth, height=5.5cm, ybar, bar width=9pt, ymajorgrids, enlarge x limits=0.25, symbolic x coords={ohmsch,induktiv,kapazitiv}, xtick=data, legend pos=south east, legend style={font=\footnotesize}, ymin=0, ylabel={Strangspannung $U$ [V]}]
+\addplot[fill=blue!60] coordinates {(ohmsch,221.60) (induktiv,203.60) (kapazitiv,220.57)}; \addlegendentry{primär}
+\addplot[fill=red!60] coordinates {(ohmsch,187.97) (induktiv,168.63) (kapazitiv,188.87)}; \addlegendentry{sekundär}
+\end{axis}
+\end{tikzpicture}
 \caption{Belastungsversuch: Wirkleistung (links) und Strangspannung (rechts) auf Primär- und Sekundärseite}
 \label{fig:bel}
 \end{figure}
@@ -374,20 +1639,38 @@ Die induktive Last verursacht den größten Spannungsfall, weil $X_\mathrm{k}\si
 %--------------------------------------------------
 \section{Einschaltstrom (Rush-Effekt)}
 
-Der leerlaufende Transformator wurde dreimal direkt ans Netz ($U_\mathrm{Str}\approx\SI{213}{V}$) geschaltet. Das Oszilloskop wurde auf den Strom getriggert (Triggerschwelle \SI{-36.3}{A}). \Cref{fig:rush} zeigt die aufgezeichneten Verläufe, \cref{fig:scope} beispielhaft ein Oszilloskopbild.
+Der leerlaufende Transformator wurde dreimal direkt ans Netz ($U_\mathrm{Str}\approx\SI{213}{V}$) geschaltet. Das Oszilloskop wurde auf den Strom getriggert (Triggerschwelle \SI{-36.3}{A}). \Cref{fig:rush} zeigt die aufgezeichneten Verläufe.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{rush.pdf}
+\begin{tikzpicture}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, grid=major, axis y line*=left, ylabel={Strom $i_1$ [A]}, xmin=-21, xmax=180, title={scope\_3}]
+\addplot[blue] table[x=t,y=i]{\rushA};
+\end{axis}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, axis y line*=right, axis x line=none, ylabel={Spannung $u_1$ [V]}, xmin=-21, xmax=180]
+\addplot[red] table[x=t,y=u]{\rushA};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, grid=major, axis y line*=left, ylabel={Strom $i_1$ [A]}, xmin=-21, xmax=180, title={scope\_6}]
+\addplot[blue] table[x=t,y=i]{\rushB};
+\end{axis}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, axis y line*=right, axis x line=none, ylabel={Spannung $u_1$ [V]}, xmin=-21, xmax=180]
+\addplot[red] table[x=t,y=u]{\rushB};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, grid=major, axis y line*=left, ylabel={Strom $i_1$ [A]}, xmin=-21, xmax=180, title={scope\_7}, xlabel={Zeit $t$ [ms]}]
+\addplot[blue] table[x=t,y=i]{\rushC};
+\end{axis}
+\begin{axis}[width=0.8\textwidth, height=4.4cm, axis y line*=right, axis x line=none, ylabel={Spannung $u_1$ [V]}, xmin=-21, xmax=180]
+\addplot[red] table[x=t,y=u]{\rushC};
+\end{axis}
+\end{tikzpicture}
 \caption{Einschaltstrom $i_1(t)$ (blau, linke Achse) und Strangspannung $u_1(t)$ (rot, rechte Achse) für drei Einschaltvorgänge}
 \label{fig:rush}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{scope_8.png}
-\caption{Oszilloskopbild eines Einschaltvorgangs (gelb: Spannung, \SI{100}{V/div}; grün: Strom, \SI{50}{A/div}; \SI{20}{ms/div})}
-\label{fig:scope}
 \end{figure}
 
 \begin{table}[H]
@@ -470,5 +1753,7 @@ max.\ Einschaltstrom (Scheitel) & \SI{58}{A} bis \SI{149}{A} ($\le 2{,}3\cdot\ha
 Insgesamt wurden alle Versuchsziele erreicht. Der Versuch zeigt anschaulich, wie sich aus zwei einfachen Messungen (Leerlauf und Kurzschluss) ein Ersatzschaltbild ableiten lässt, das das Betriebsverhalten unter Last zuverlässig vorhersagt.
 
 %==================================================
-\bibliography{Literatur}
+\begin{thebibliography}{9}
+\bibitem{landrath2026trafo} J.~Landrath, T.~Basso: \emph{Labor Elektrische Maschinen -- Versuch~2: Transformator}. Praktikumsanleitung, Ostfalia Hochschule für angewandte Wissenschaften, 2026. Unveröffentlichtes Laborskript.
+\end{thebibliography}
 \end{document}
